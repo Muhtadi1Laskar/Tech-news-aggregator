@@ -29,7 +29,6 @@ class DailyStarNews(WebsiteInfo):
                         "time": time,
                     }
                 )
-
         return self.data
 
     def get_links(self):

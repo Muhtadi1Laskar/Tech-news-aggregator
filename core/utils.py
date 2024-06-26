@@ -18,15 +18,3 @@ def save_data(data, website_name):
 
     with open(file_path, 'w') as f:
         json.dump(existing_data, f, indent=4)
-
-
-def print_message(website_name, type):
-    messages = {
-        'start': 'The scrapper started scraping',
-        'end': 'Successfully scraped data from',
-        'processing': 'Scraping is going on'
-    }
-    user_message = f"{messages[type]} {website_name}"
-    full_message = f"{user_message}\n" if type == 'end' else user_message
-
-    print(full_message) 

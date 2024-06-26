@@ -8,7 +8,7 @@ from adapters import (
     dailystarnews_adapter,
     vergenews_adapter
 )
-from core.utils import save_data, print_message
+from core.utils import save_data
 
 
 def get_articles_and_save(url, adapter_class, website_name):
@@ -25,39 +25,36 @@ def get_articles_and_save(url, adapter_class, website_name):
 
 
 if __name__ == "__main__":
-    print_message("hackernews", "start")
-    for i in range(1, 5):
+    total_pages = 6
+
+    print("Started Scraping")
+
+    for i in range(1, total_pages):
 
         hackernews_url = f"https://news.ycombinator.com/?p={i}"
         get_articles_and_save(
             hackernews_url, hackernews_adapter.HackerNews, "hackernews"
         )
-    print_message("hackernews", "end")
-        
-    print_message("techcrunch", "start")
-    for i in range(1, 5):
+
+
+    for i in range(1, total_pages):
         tech_crunch_url = f"https://techcrunch.com/category/startups/page/{i}"
         get_articles_and_save(
             tech_crunch_url, techcrunch_adapter.TechCrunch, "techcrunch"
         )
-    print_message("techcrunch", "end")
 
-    print_message("dailystar", "start")
-    for i in range(1, 5):
+    for i in range(1, 50):
         daily_star_url = f"https://www.thedailystar.net/tech-startup/latest?page={i}"
         get_articles_and_save(
             daily_star_url, dailystarnews_adapter.DailyStarNews, "dailystar"
         )
-    print_message("dailystar", "end")
 
-    print_message("vergenews", "start")
-    for i in range(1, 5):
+    for i in range(1, 15):
         verge_news_url = f"https://www.theverge.com/tech/archives/{i}"
         get_articles_and_save(verge_news_url, vergenews_adapter.VergeNews, "vergenews")
-    print_message("vergenews", "end")
 
-    print_message("hackernews", "start")
     reddit_url = "https://www.reddit.com/r/technews/"
     get_articles_and_save(reddit_url, reddit_adapter.RedditNews, "redditnews")
-    print_message("hackernews", "end")
+    
+    print("Done Scraping")
     

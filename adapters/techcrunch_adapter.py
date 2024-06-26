@@ -27,7 +27,7 @@ class TechCrunch(WebsiteInfo):
                     'description': description,
                     'time': time
                 })
-
+                    
         return self.data
 
     def get_links(self):
