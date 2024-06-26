@@ -26,7 +26,7 @@ def get_articles_and_save(url, adapter_class, website_name):
 
 if __name__ == "__main__":
     print_message("hackernews", "start")
-    for i in range(1, 50):
+    for i in range(1, 5):
 
         hackernews_url = f"https://news.ycombinator.com/?p={i}"
         get_articles_and_save(
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print_message("hackernews", "end")
         
     print_message("techcrunch", "start")
-    for i in range(1, 50):
+    for i in range(1, 5):
         tech_crunch_url = f"https://techcrunch.com/category/startups/page/{i}"
         get_articles_and_save(
             tech_crunch_url, techcrunch_adapter.TechCrunch, "techcrunch"
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     print_message("techcrunch", "end")
 
     print_message("dailystar", "start")
-    for i in range(1, 50):
+    for i in range(1, 5):
         daily_star_url = f"https://www.thedailystar.net/tech-startup/latest?page={i}"
         get_articles_and_save(
             daily_star_url, dailystarnews_adapter.DailyStarNews, "dailystar"
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     print_message("dailystar", "end")
 
     print_message("vergenews", "start")
-    for i in range(1, 15):
+    for i in range(1, 5):
         verge_news_url = f"https://www.theverge.com/tech/archives/{i}"
         get_articles_and_save(verge_news_url, vergenews_adapter.VergeNews, "vergenews")
     print_message("vergenews", "end")

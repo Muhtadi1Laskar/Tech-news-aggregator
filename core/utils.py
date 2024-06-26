@@ -26,5 +26,7 @@ def print_message(website_name, type):
         'end': 'Successfully scraped data from',
         'processing': 'Scraping is going on'
     }
-    user_message = messages[type]
-    print(f"{user_message} {website_name}\n")
+    user_message = f"{messages[type]} {website_name}"
+    full_message = f"{user_message}\n" if type == 'end' else user_message
+
+    print(full_message) 
