@@ -7,8 +7,8 @@ class RedditNews(WebsiteInfo):
     def __init__(self, soup):
         self.soup = soup
         self.reddit = praw.Reddit(
-            client_id="YHc0g9_loGRhyY2YO538Tw",
-            client_secret="IwYpWUo3YaLLcMrDdbjHeF2JTGcR7g",
+            client_id="",
+            client_secret="",
             user_agent="tutorial",
         )
         self.subreddit = self.reddit.subreddit('technews')
