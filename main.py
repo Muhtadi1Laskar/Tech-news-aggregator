@@ -6,6 +6,7 @@ from adapters import (
     techcrunch_adapter,
     reddit_adapter,
     dailystarnews_adapter,
+    vergenews_adapter
 )
 from core.utils import save_data
 
@@ -42,6 +43,10 @@ if __name__ == "__main__":
         get_articles_and_save(
             daily_star_url, dailystarnews_adapter.DailyStarNews, "dailystar"
         )
+
+    for i in range(1, 15):
+        verge_news_url = f"https://www.theverge.com/tech/archives/{i}"
+        get_articles_and_save(verge_news_url, vergenews_adapter.VergeNews, "vergenews")
 
     reddit_url = "https://www.reddit.com/r/technews/"
     get_articles_and_save(reddit_url, reddit_adapter.RedditNews, "redditnews")
