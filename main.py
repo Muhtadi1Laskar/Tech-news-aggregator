@@ -6,7 +6,8 @@ from adapters import (
     techcrunch_adapter,
     reddit_adapter,
     dailystarnews_adapter,
-    vergenews_adapter
+    vergenews_adapter,
+    techradarnews_adapter
 )
 from core.utils import save_data
 
@@ -30,7 +31,6 @@ if __name__ == "__main__":
     print("Started Scraping")
 
     for i in range(1, total_pages):
-
         hackernews_url = f"https://news.ycombinator.com/?p={i}"
         get_articles_and_save(
             hackernews_url, hackernews_adapter.HackerNews, "hackernews"
@@ -52,6 +52,10 @@ if __name__ == "__main__":
     for i in range(1, 15):
         verge_news_url = f"https://www.theverge.com/tech/archives/{i}"
         get_articles_and_save(verge_news_url, vergenews_adapter.VergeNews, "vergenews")
+    
+    for i in range(1, 6):
+        tech_radar_url = f"https://www.techradar.com/computing/software/artificial-intelligence/{i}"
+        get_articles_and_save(tech_radar_url, techradarnews_adapter.RadarNews, "techradar")
 
     reddit_url = "https://www.reddit.com/r/technews/"
     get_articles_and_save(reddit_url, reddit_adapter.RedditNews, "redditnews")
