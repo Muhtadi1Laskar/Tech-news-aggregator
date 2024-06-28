@@ -20,11 +20,12 @@ class DailyStarNews(WebsiteInfo):
                 link = heading_tag.a["href"] if heading_tag else None
                 paragraph = paragraph_tag.text.strip() if heading_tag else None
                 time = time_tag.text.strip() if time_tag else None
+                full_link = f"https://www.thedailystar.net/tech-startup/news{link}"
 
                 self.data.append(
                     {
                         "heading": heading,
-                        "link": link,
+                        "link": full_link,
                         "description": paragraph,
                         "time": time,
                     }
