@@ -1,9 +1,0 @@
-from dataclasses import dataclass
-from datetime import date
-
-@dataclass
-class Article:
-    title: str
-    url: str
-    published_at: date | None
-    source: str
