@@ -34,31 +34,31 @@ site_config = [
         'base_url': 'https://news.ycombinator.com/?p={}',
         'adapter': hackernews_adapter.HackerNews,
         'website_name': 'hackernews',
-        'total_pages': 5
+        'total_pages': 2
     },
     {
         'base_url': 'https://techcrunch.com/category/startups/page/{}',
         'adapter': techcrunch_adapter.TechCrunch,
         'website_name': 'techcrunch',
-        'total_pages': 5
+        'total_pages': 2
     },
     {
         'base_url': 'https://www.thedailystar.net/tech-startup/latest?page={}',
         'adapter': dailystarnews_adapter.DailyStarNews,
         'website_name': 'dailystar',
-        'total_pages': 5
+        'total_pages': 2
     },
     {
         'base_url': 'https://www.theverge.com/tech/archives/{}',
         'adapter': vergenews_adapter.VergeNews,
         'website_name': 'vergenews',
-        'total_pages': 5
+        'total_pages': 2
     },
     {
         'base_url': 'https://www.techradar.com/computing/software/artificial-intelligence/{}',
         'adapter': techradarnews_adapter.RadarNews,
         'website_name': 'techradar',
-        'total_pages': 5
+        'total_pages': 2
     }
 ]
 
