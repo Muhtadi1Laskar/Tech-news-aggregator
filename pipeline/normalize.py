@@ -10,17 +10,15 @@ def normalize_data(article_list):
     for article in article_list:
         title = article.title.strip()
         url = article.url
-        description = article.description.strip()
         published_at = article.published_at.strip()
         source = article.source.strip()
 
-        article_id = hash_data(title + url + description + published_at)
+        article_id = hash_data(title + url  + published_at)
 
         result.append({
             "article_id": article_id,
             "title": title,
             "url": url,
-            "description": description,
             "published_at": published_at,
             "source": source
         })

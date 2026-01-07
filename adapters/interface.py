@@ -23,3 +23,8 @@ class BaseAdapted(ABC):
     @abstractmethod
     def parse(self, soup: BeautifulSoup):
         pass
+
+class FetchStrategy(ABC):
+    @abstractmethod
+    def fetch(self):
+        pass

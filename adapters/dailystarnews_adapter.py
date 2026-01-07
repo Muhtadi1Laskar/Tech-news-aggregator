@@ -38,10 +38,11 @@ class DailyStarAdapter(BaseAdapted):
                 Article(
                     title=title,
                     url=url,
-                    description=description,
                     published_at=published_at,
                     source=self.SOURCE
                 )
             )
 
-        return articles
+        print(articles)
+
+        return {}
