@@ -1,5 +1,6 @@
 import json
 import os
+import hashlib
 
 def save_data(data, website_name):
     file_path = f"Data/{website_name}.json"
@@ -17,3 +18,7 @@ def save_data(data, website_name):
 
     with open(file_path, 'w') as f:
         json.dump(existing_data, f, indent=4)
+
+
+def hash_data(data):
+    return hashlib.sha256(data.encode("utf-8")).hexdigest()

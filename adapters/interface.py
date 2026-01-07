@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from bs4 import BeautifulSoup
 
 class WebsiteInfo(ABC):
     @abstractmethod
@@ -17,3 +18,8 @@ class WebsiteInfo(ABC):
     def get_description(self):
         pass
 
+
+class BaseAdapted(ABC):
+    @abstractmethod
+    def parse(self, soup: BeautifulSoup):
+        pass

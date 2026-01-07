@@ -1,42 +1,47 @@
+from configparser import ParsingError
 from bs4 import BeautifulSoup
 from adapters.interface import WebsiteInfo
+from adapters.interface import BaseAdapted
+from core.article import Article
 
 
-class DailyStarNews(WebsiteInfo):
-    def __init__(self, soup):
-        self.soup = soup
-        self.data = []
+class DailyStarAdapter(BaseAdapted):
+    SOURCE = "The Daily STAR"
+    BASE_URL = "https://www.thedailystar.net"
 
-    def get_articles(self):
-        parent_tag = self.soup.findAll("div", class_="card-content card-content columns")
+    def parse(self, soup: BeautifulSoup):
+        articles = []
 
-        if parent_tag:
-            for tag in parent_tag:
-                heading_tag = tag.find("h3", class_="title")
-                paragraph_tag = tag.find("p", class_="intro")
-                time_tag = tag.find("span", class_="interval")
+        print(soup)
 
-                heading = heading_tag.a.text.strip() if heading_tag else None
-                link = heading_tag.a["href"] if heading_tag else None
-                paragraph = paragraph_tag.text.strip() if heading_tag else None
-                time = time_tag.text.strip() if time_tag else None
-                full_link = f"https://www.thedailystar.net/tech-startup/news{link}"
+        cards = soup.findAll("div", class_="card-content card-content columns")
 
-                self.data.append(
-                    {
-                        "heading": heading,
-                        "link": full_link,
-                        "description": paragraph,
-                        "time": time,
-                    }
+        if not cards:
+            raise ParsingError("Daily Star layout changed")
+        
+        
+        for card in cards:
+            title_tag = card.select_one("h3.title a")
+            if not title_tag:
+                continue
+
+            title = title_tag.get_text(strip=True)
+            url = self.BASE_URL + title_tag["href"]
+
+            description_tag = card.select_one("p.intro")
+            description = description_tag.get_text(strip=True) if description_tag else None
+
+            time_tag = card.select_one("span.interval")
+            published_at = time_tag.get_text(strip=True)
+
+            articles.append(
+                Article(
+                    title=title,
+                    url=url,
+                    description=description,
+                    published_at=published_at,
+                    source=self.SOURCE
                 )
-        return self.data
+            )
 
-    def get_links(self):
-        pass
-
-    def get_time(self):
-        pass
-
-    def get_description(self):
-        pass
+        return articles
