@@ -10,8 +10,8 @@ class RedditNews(WebsiteInfo):
     def __init__(self, soup):
         self.soup = soup
         self.reddit = praw.Reddit(
-            client_id=os.getenv("CLIENTID"),
-            client_secret=os.getenv("CLIENTSECRET"),
+            client_id=os.getenv("CLIENTID") or os.getenv("client_id"),
+            client_secret=os.getenv("CLIENTSECRET") or os.getenv("client_secret"),
             user_agent="tutorial",
         )
         self.subreddit = self.reddit.subreddit('technews')

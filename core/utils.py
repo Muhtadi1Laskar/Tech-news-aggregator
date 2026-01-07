@@ -1,7 +1,6 @@
 import json
 import os
 
-
 def save_data(data, website_name):
     file_path = f"Data/{website_name}.json"
 
