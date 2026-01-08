@@ -1,33 +1,65 @@
 from fetch import fetch_html, fetch_json
-from parsers import (
-    amardesh,
-    prothomalo,
-    kalerkantho
-)
+from parsers import amardesh, prothomalo, kalerkantho, noyadigantho
 
 SITES = [
-    # {
-    #     "name": "AmarDesh",
-    #     "fetch": fetch_json,
-    #     "parse": amardesh.parse_amardesh,
-    #     "new_types": ["national", "world", "sports"],
-    #     "total_pages": 2,
-    #     "build_url": lambda page, t: f"https://www.dailyamardesh.com/api/stories?page={page}&slug={t}"
-    # },
-    # {
-    #     "name": "ProthomAlo",
-    #     "fetch": fetch_json,
-    #     "parse": prothomalo.parse_prothomalo,
-    #     "new_types": ["bangladesh", "world", "sports"],
-    #     "total_pages": 2,
-    #     "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={page}&limit=10"
-    # },
+    {
+        "name": "AmarDesh",
+        "fetch": fetch_json,
+        "parse": amardesh.parse_amardesh,
+        "total_pages": 2,
+        "build_url": lambda page, t: f"https://www.dailyamardesh.com/api/stories?page={page}&slug={t}",
+        "params": {
+            "news_types": {
+                "national": "Bangladesh",
+                "international": "world",
+                "sports": "sports",
+            },
+            "total_pages": 2,
+        },
+    },
+    {
+        "name": "ProthomAlo",
+        "fetch": fetch_json,
+        "parse": prothomalo.parse_prothomalo,
+        "total_pages": 2,
+        "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={page}&limit=10",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "world",
+                "sports": "sports",
+            },
+            "total_pages": 2,
+        },
+    },
     {
         "name": "KalerKantho",
         "fetch": fetch_json,
         "parse": kalerkantho.parse_kalerkantho,
-        "new_types": ["national", "world", "sport"],
         "total_pages": 2,
-        "build_url": lambda page, t: f"https://bn.api-kalerkantho.com/api/online/{t}?page={page}"
-    }
+        "build_url": lambda page, t: f"https://bn.api-kalerkantho.com/api/online/{t}?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "world",
+                "sports": "sport",
+            },
+            "total_pages": 2,
+        },
+    },
+    {
+        "name": "DailyNoyaDiganta",
+        "fetch": fetch_html,
+        "parse": noyadigantho.parse_dailynoyadiganta,
+        "total_pages": 2,
+        "build_url": lambda page, t: f"https://dailynayadiganta.com/{t}?page={page}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 2,
+        },
+    },
 ]
