@@ -9,16 +9,16 @@ def count_scraped_data():
 
     result = []
 
-    for folder in data_folder:
+    for filename in data_folder:
         try:
-            filename = os.path.join(base_dir, folder)
-            size = os.path.getsize(filename)
+            folder = os.path.join(base_dir, filename)
+            size = os.path.getsize(folder)
 
-            with open(filename, 'r', encoding='utf-8') as file:
+            with open(folder, 'r', encoding='utf-8') as file:
                 data = json.load(file)
 
                 result.append({
-                    "name": folder,
+                    "name": filename.replace(".json", ""),
                     "totalData": len(data) if isinstance(data, list) else 1,
                     "size": size
                 })
@@ -40,13 +40,17 @@ if __name__ == "__main__":
 
     if data_counts:
         total_items = sum(item["totalData"] for item in data_counts)
-        total_size = sum(items["size"] for items in data_counts) * 0.001
+        total_size_in_bytes = sum(items["size"] for items in data_counts)
+        total_size_in_kb = total_size_in_bytes / 1024
+        total_size_in_mb = total_size_in_kb / 1024
 
         for item in data_counts:
-            print(f"{item["name"]}: {item["totalData"]} items")
+            print(f"\n{item["name"]}: {item["totalData"]} items")
 
         print(f"\nTotal files: {len(data_counts)}")
         print(f"Total data items across all files: {total_items}")
-        print(f"Total size: {total_size} KB")
+        print(f"Total size: {total_size_in_bytes} BYTES")
+        print(f"Total size: {total_size_in_kb} KB")
+        print(f"Total size: {total_size_in_mb} MB")
     else:
         print("No data files found or empty directory.") 
