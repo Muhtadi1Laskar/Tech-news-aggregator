@@ -1,5 +1,5 @@
 from fetch import fetch_html, fetch_json
-from parsers import amardesh, prothomalo, kalerkantho, noyadigantho, jugantor
+from parsers import amardesh, prothomalo, kalerkantho, noyadigantho, jugantor, dailysangram
 
 SITES = [
     {
@@ -73,6 +73,21 @@ SITES = [
                 "national": '5',
                 "international": '6',
                 "sports": '8',
+            },
+            "total_pages": 2,
+        },
+    },
+    {
+        "name": "DailySangram",
+        "fetch": fetch_html,
+        "parse": dailysangram.parse_dailysangram,
+        "total_pages": 2,
+        "build_url": lambda page, t: f"https://dailysangram.com/{t}/?page={page}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
             },
             "total_pages": 2,
         },
