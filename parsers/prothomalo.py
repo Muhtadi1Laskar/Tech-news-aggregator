@@ -1,4 +1,4 @@
-def parse_prothomalo(json_data, url, news_type = "sports"):
+def parse_prothomalo(json_data, name, news_type = "sports"):
     articles = []
     stories = json_data.get("items") or []
 
@@ -8,7 +8,8 @@ def parse_prothomalo(json_data, url, news_type = "sports"):
             "title": single_story["headline"],
             "link": single_story["url"],
             "publish_date": single_story["content-created-at"],
-            "news_type": news_type
+            "news_type": news_type,
+            "source": name
         })
     
     return articles

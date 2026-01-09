@@ -2,7 +2,7 @@ from configparser import ParsingError
 from bs4 import BeautifulSoup
 
 
-def parse_dailynoyadiganta(html_content, url, news_type = "sports"):
+def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
     
@@ -21,7 +21,8 @@ def parse_dailynoyadiganta(html_content, url, news_type = "sports"):
             "title": title_tag.get_text(strip=True),
             "link": title_tag["href"],
             "published_at": "",
-            "news_type": news_type
+            "news_type": news_type,
+            "source": name
         })
 
     return articles

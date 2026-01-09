@@ -1,4 +1,4 @@
-def parse_kalerkantho(json_data, url, news_type="sports"):
+def parse_kalerkantho(json_data, name, news_type="sports"):
     articles = []
     stories = json_data.get("category") or {}
     baseURL = f"https://www.kalerkantho.com/online/{news_type}/"
@@ -12,6 +12,7 @@ def parse_kalerkantho(json_data, url, news_type="sports"):
                 "link": full_url,
                 "publish_date": story["created_at"],
                 "news_type": news_type,
+                "source": name
             }
         )
 

@@ -2,7 +2,7 @@ from configparser import ParsingError
 from bs4 import BeautifulSoup
 
 
-def parse_dailysangram(html_content, url, news_type = "sports"):
+def parse_dailysangram(html_content, name, news_type = "sports"):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
     base_url = f"https://dailysangram.com"
@@ -23,7 +23,8 @@ def parse_dailysangram(html_content, url, news_type = "sports"):
             "title": title_tag.get_text(strip=True),
             "link": full_url,
             "published_at": "",
-            "news_type": news_type
+            "news_type": news_type,
+            "source": name
         })
 
     return articles
