@@ -1,15 +1,23 @@
 import requests
+import time
+import random
+
 
 def fetch_html(url):
     response = fetch_function(url)
 
-    if response is not None:
+    if response is None:
+        return None
+    elif response.status_code == 200:
         return response.content
-    return None
+    else:
+        print(f"Got status: {response.status_code} for {url}")
+        return None
 
 
 def fetch_json(url):
-    response = fetch_function(url,)
+    response = fetch_function(url)
+    
     if response is not None:
         try:
             return response.json()
@@ -19,12 +27,16 @@ def fetch_json(url):
 
 
 def fetch_function(url):
+    header = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    }
+
+    time.sleep(random.uniform(1, 3))
+
     try:
         response = requests.get(
             url,
-            headers={
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            },
+            headers=header
         )
         response.raise_for_status()
         return response

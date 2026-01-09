@@ -1,5 +1,12 @@
 from fetch import fetch_html, fetch_json
-from parsers import amardesh, prothomalo, kalerkantho, noyadigantho, jugantor, dailysangram
+from parsers import (
+    amardesh, 
+    prothomalo, 
+    kalerkantho, 
+    noyadigantho, 
+    jugantor, 
+    dailysangram
+)
 
 SITES = [
     {
@@ -91,5 +98,5 @@ SITES = [
             },
             "total_pages": 2,
         },
-    },
+    }
 ]
