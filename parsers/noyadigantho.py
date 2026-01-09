@@ -5,12 +5,8 @@ from bs4 import BeautifulSoup
 def parse_dailynoyadiganta(html_content, url, news_type = "sports"):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
-
-    # print(html_content)
-
+    
     article_card = soup.select("article.p-4")
-
-    print("Article Card: ", len(article_card))
 
     if not article_card:
         raise ParsingError("Daily Noya Digana layout changed")

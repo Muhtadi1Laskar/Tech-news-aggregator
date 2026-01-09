@@ -1,5 +1,5 @@
 from fetch import fetch_html, fetch_json
-from parsers import amardesh, prothomalo, kalerkantho, noyadigantho
+from parsers import amardesh, prothomalo, kalerkantho, noyadigantho, jugantor
 
 SITES = [
     {
@@ -10,7 +10,7 @@ SITES = [
         "build_url": lambda page, t: f"https://www.dailyamardesh.com/api/stories?page={page}&slug={t}",
         "params": {
             "news_types": {
-                "national": "Bangladesh",
+                "national": "bangladesh",
                 "international": "world",
                 "sports": "sports",
             },
@@ -58,6 +58,21 @@ SITES = [
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sports",
+            },
+            "total_pages": 2,
+        },
+    },
+    {
+        "name": "Jugantor",
+        "fetch": fetch_json,
+        "parse": jugantor.parse_jugantor,
+        "total_pages": 2,
+        "build_url": lambda page, t: f"https://www.jugantor.com/ajax/load/categorynews/{t}/20/{page}/10",
+        "params": {
+            "news_types": {
+                "national": '5',
+                "international": '6',
+                "sports": '8',
             },
             "total_pages": 2,
         },
