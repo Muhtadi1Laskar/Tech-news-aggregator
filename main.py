@@ -46,6 +46,7 @@ from collections import defaultdict
 from urllib.parse import urlparse
 from functools import partial  # ADD THIS IMPORT
 from config.sites import SITES
+from config.worker_config import site_configs
 from utils.utils import save_to_json, dedupe
 from utils.cleaner import clean_and_process_articles
 from model.database import save_to_database
@@ -144,34 +145,6 @@ def run_site_with_rate_limit(
 def main_with_rate_limit():
     """Main function with rate limiting."""
     print("Started Scraping")
-
-    # Configure rate limiting per site if needed
-    site_configs = {
-        "AmarDesh": {
-            "max_workers": 5,
-            "delay": 1.5,  # API endpoint, can be faster
-            "timeout": 15,  # Added timeout parameter
-        },
-        "ProthomAlo": {
-            "max_workers": 3,  # Conservative - major site with protection
-            "delay": 2.5,
-            "timeout": 20,
-            "retries": 2,  # Add retry for robustness
-        },
-        "KalerKantho": {"max_workers": 4, "delay": 2.0, "timeout": 15},
-        "DailyNoyaDiganta": {
-            "max_workers": 3,  # HTML parsing might be slower
-            "delay": 2.0,
-            "timeout": 15,
-        },
-        "Jugantor": {
-            "max_workers": 2,  # Very conservative - AJAX endpoint
-            "delay": 3.0,  # Longer delay for safety
-            "timeout": 20,
-            "retries": 3,
-        },
-        "DailySangram": {"max_workers": 3, "delay": 2.0, "timeout": 15},
-    }
 
     for site in SITES:
         site_name = site["name"]
