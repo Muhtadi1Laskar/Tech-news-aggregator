@@ -22,7 +22,7 @@ def parse_dailysangram(html_content, name, news_type = "sports"):
         articles.append({
             "title": title_tag.get_text(strip=True),
             "link": full_url,
-            "published_at": "",
+            "publish_date": "",
             "news_type": news_type,
             "source": name
         })

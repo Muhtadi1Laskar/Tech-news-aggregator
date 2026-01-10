@@ -6,7 +6,7 @@ def parse_jugantor(json_data, name, news_type = "sports"):
         articles.append({
             "title": story["fullheadline"],
             "link": story["url"],
-            "published_at": story["created_at"],
+            "publish_date": story["created_at"],
             "news_type": news_type,
             "source": name
         })

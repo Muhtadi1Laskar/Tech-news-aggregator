@@ -2,14 +2,17 @@ import hashlib
 from urllib.parse import urlparse, urlunparse
 from datetime import datetime, timezone
 
-def hash_data(source, url):
+def hash_data(data):
+    return hashlib.sha256(data.encode("utf-8")).hexdigest()
+
+def generate_id(source, url):
     key = f"{source}:{url}"
-    return hashlib.sha256(key.encode("utf-8")).hexdigest()
+    return hash_data(key)
 
 def clean_text(text):
     return " ".join(text.split())
 
-def cannonicalize_url(url):
+def canonicalize_url(url):
     parsed = urlparse(url)
     return urlunparse(
         (parsed.scheme, parsed.netloc, parsed.path, "", "", "")
@@ -29,22 +32,25 @@ def clean_and_process_articles(articles, news_language):
     
     return clean_articles
 
-def normalize_article(data_collection, news_language = "BN"):
-    title = clean_text(data_collection.get("title", ""))
-    url = cannonicalize_url(data_collection.get("link"))
-    published_date = data_collection.get("publish_date", "")
-    category = data_collection.get("news_type")
-    source = data_collection.get("source", "")
+def normalize_article(data, news_language = "BN"):
+    title = clean_text(data.get("title", ""))
+    raw_url = data.get("link")
+    published_date = data.get("publish_date", "")
+    category = data.get("news_type")
+    source = data.get("source", "")
+
+    url = canonicalize_url(raw_url)
     
     article = {
-        "id": hash_data(source, url),
+        "id": generate_id(source, url),
         "title": title,
         "url": url,
-        "publishedData": published_date,
         "category": category,
         "source": source,
+        "language": news_language,
+        "contentHash": hash_data(title + published_date + category),
+        "publishedDate": published_date,
         "fetchedDate": datetime.now(timezone.utc).isoformat(),
-        "language": news_language
     }
 
     return article

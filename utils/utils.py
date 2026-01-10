@@ -60,7 +60,7 @@ def dedupe(articles):
     unique = []
 
     for a in articles:
-        key = a["url"]
+        key = a["id"]
 
         if key not in seen:
             seen.add(key)

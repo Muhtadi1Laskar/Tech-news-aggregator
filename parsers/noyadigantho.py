@@ -20,7 +20,7 @@ def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
         articles.append({
             "title": title_tag.get_text(strip=True),
             "link": title_tag["href"],
-            "published_at": "",
+            "publish_date": "",
             "news_type": news_type,
             "source": name
         })

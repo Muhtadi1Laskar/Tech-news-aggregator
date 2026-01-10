@@ -1,0 +1,53 @@
+import os
+from dotenv import load_dotenv
+from pymongo import MongoClient, UpdateOne
+
+load_dotenv()
+
+database_url = os.getenv("DATABASE_URL")
+database_name = os.getenv("DATABASE_NAME")
+collection_name = os.getenv("DATABASE_COLLECTION")
+
+client = MongoClient(database_url)
+db = client[database_name]
+collections = db[collection_name]
+
+
+def save_to_database(articles):
+    if not articles:
+        return None
+
+    operations = []
+
+    for article in articles:
+        article_id = article["id"]
+        content_hash = article["contentHash"]
+
+        operations.append(
+            UpdateOne(
+                {"_id": article_id},
+                {
+                    "$setOnInsert": {
+                        "_id": article_id,
+                        "createdAt": article["fetchedDate"],
+                    },
+                    "$set": {
+                        **article,
+                        "lastSeenAt": article["fetchedDate"],
+                    },
+                },
+                upsert=True,
+            )
+        )
+
+    try:
+        result = collections.bulk_write(operations, ordered=True)
+        print(
+            {
+                "inserted": result.upserted_count,
+                "updated": result.modified_count,
+                "matched": result.matched_count,
+            }
+        )
+    except Exception as e:
+        print(f"An error occured: {e}")
