@@ -25,9 +25,9 @@
 #     clearned_articles = clean_and_process_articles(all_articles, language)
 #     final_articles = dedupe(clearned_articles)
 
-#     print(final_articles)
+#     # print(final_articles)
 
-#     save_to_database(final_articles) 
+#     # save_to_database(final_articles) 
 
 
 # def main():
@@ -71,7 +71,7 @@ def run_site_with_rate_limit(
     # Create all URLs to fetch
     urls_to_fetch = []
     for key, value in news_types.items():
-        for i in range(1, total_pages + 1):
+        for i in range(0, total_pages + 1):
             url = site["build_url"](i, value)
             urls_to_fetch.append((url, key))
 
@@ -149,7 +149,8 @@ def main_with_rate_limit():
     print("Started Scraping")
 
     for site in SITES:
-        site_name = site["name"]
+        site_name = site.get("name", "")
+        total_pages = site.get("params", {}).get("total_pages", 0)
 
         # Get site-specific config or use defaults
         config = site_configs.get(site_name, {})
@@ -163,7 +164,7 @@ def main_with_rate_limit():
         try:
             run_site_with_rate_limit(
                 site,
-                total_pages=site["params"]["total_pages"],
+                total_pages=total_pages,
                 max_workers=max_workers,
                 delay=delay,
             )

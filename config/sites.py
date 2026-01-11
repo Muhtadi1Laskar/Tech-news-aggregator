@@ -6,7 +6,8 @@ from parsers import (
     noyadigantho, 
     jugantor, 
     dailysangram,
-    bonikbartha
+    bonikbartha,
+    the_business_standard
 )
 
 SITES = [
@@ -101,7 +102,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "Bonik Bartha Bangla",
+        "name": "Bonik Bartha (Bangla)",
         "fetch": fetch_html,
         "parse": bonikbartha.parse_bonikbartha,
         "build_url": lambda page, t: f"https://bonikbarta.com/{t}",
@@ -116,7 +117,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "Bonik Bartha English",
+        "name": "Bonik Bartha (English)",
         "fetch": fetch_html,
         "parse": bonikbartha.parse_bonikbartha,
         "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
@@ -127,6 +128,37 @@ SITES = [
                 "sports": "sports",
             },
             "total_pages": 1,
+        },
+        "language": "EN"
+    },
+    {
+        "name": "The Business Standard (Bangla)",
+        "fetch": fetch_html,
+        "parse": the_business_standard.parse_the_daily_standared,
+        "build_url": lambda page, t: f"https://www.tbsnews.net/bangla/{t}?page={page-1}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports"
+            },
+            "total_pages": 3,
+        },
+        "language": "BN"
+    },
+    {
+        "name": "The Business Standard (English)",
+        "fetch": fetch_html,
+        "parse": the_business_standard.parse_the_daily_standared,
+        "build_url": lambda page, t: f"https://www.tbsnews.net/{t}?page={page-1}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+                "technology": "tech"
+            },
+            "total_pages": 3,
         },
         "language": "EN"
     }

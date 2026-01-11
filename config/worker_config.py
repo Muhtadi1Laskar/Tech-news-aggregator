@@ -33,4 +33,9 @@ site_configs = {
         "delay": 2.0, 
         "timeout": 15
     },
+    "The Business Standard Bangla": {
+        "max_workers": 3, 
+        "delay": 2.0, 
+        "timeout": 15
+    },
 }
