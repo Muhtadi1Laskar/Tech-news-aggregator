@@ -25,7 +25,9 @@
 #     clearned_articles = clean_and_process_articles(all_articles, language)
 #     final_articles = dedupe(clearned_articles)
 
-#     save_to_database(final_articles) # Saved the list of scraped data to mongoDB database
+#     print(final_articles)
+
+#     save_to_database(final_articles) 
 
 
 # def main():

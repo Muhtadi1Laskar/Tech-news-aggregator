@@ -5,7 +5,8 @@ from parsers import (
     kalerkantho, 
     noyadigantho, 
     jugantor, 
-    dailysangram
+    dailysangram,
+    bonikbartha
 )
 
 SITES = [
@@ -98,5 +99,35 @@ SITES = [
             "total_pages": 5,
         },
         "language": "BN"
+    },
+    {
+        "name": "Bonik Bartha Bangla",
+        "fetch": fetch_html,
+        "parse": bonikbartha.parse_bonikbartha,
+        "build_url": lambda page, t: f"https://bonikbarta.com/{t}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 1,
+        },
+        "language": "BN"
+    },
+    {
+        "name": "Bonik Bartha English",
+        "fetch": fetch_html,
+        "parse": bonikbartha.parse_bonikbartha,
+        "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN"
     }
 ]
