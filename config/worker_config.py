@@ -12,7 +12,7 @@ site_configs = {
         "retries": 2,  # Add retry for robustness
     },
     "Kaler Kantho": {"max_workers": 4, "delay": 2.0, "timeout": 15},
-    "DailyNoyaDiganta": {
+    "Daily Noya Diganta": {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 15,
@@ -28,12 +28,27 @@ site_configs = {
         "delay": 2.0, 
         "timeout": 15
     },
-    "Bonik Bartha Bangla": {
+    "Bonik Bartha (Bangla)": {
         "max_workers": 3, 
         "delay": 2.0, 
         "timeout": 15
     },
-    "The Business Standard Bangla": {
+    "Bonik Bartha (English)": {
+        "max_workers": 3, 
+        "delay": 2.0, 
+        "timeout": 15
+    },
+    "The Business Standard (Bangla)": {
+        "max_workers": 3, 
+        "delay": 2.0, 
+        "timeout": 15
+    },
+    "The Business Standard (English)": {
+        "max_workers": 3, 
+        "delay": 2.0, 
+        "timeout": 15
+    },
+    "The Daily Star": {
         "max_workers": 3, 
         "delay": 2.0, 
         "timeout": 15

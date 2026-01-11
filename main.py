@@ -71,7 +71,7 @@ def run_site_with_rate_limit(
     # Create all URLs to fetch
     urls_to_fetch = []
     for key, value in news_types.items():
-        for i in range(0, total_pages + 1):
+        for i in range(1, total_pages + 1):
             url = site["build_url"](i, value)
             urls_to_fetch.append((url, key))
 

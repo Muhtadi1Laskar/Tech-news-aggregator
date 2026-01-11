@@ -7,18 +7,19 @@ from parsers import (
     jugantor, 
     dailysangram,
     bonikbartha,
-    the_business_standard
+    the_business_standard,
+    the_daily_star
 )
 
 SITES = [
     {
-        "name": "AmarDesh",
+        "name": "Amar Desh",
         "fetch": fetch_json,
         "parse": amardesh.parse_amardesh,
         "build_url": lambda page, t: f"https://www.dailyamardesh.com/api/stories?page={page}&slug={t}",
         "params": {
             "news_types": {
-                "national": "bangladesh",
+                "national": "national",
                 "international": "world",
                 "sports": "sports",
             },
@@ -27,7 +28,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "ProthomAlo",
+        "name": "Prothom Alo",
         "fetch": fetch_json,
         "parse": prothomalo.parse_prothomalo,
         "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={page}&limit=10",
@@ -42,7 +43,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "KalerKantho",
+        "name": "Kaler Kantho",
         "fetch": fetch_json,
         "parse": kalerkantho.parse_kalerkantho,
         "build_url": lambda page, t: f"https://bn.api-kalerkantho.com/api/online/{t}?page={page}",
@@ -57,7 +58,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "DailyNoyaDiganta",
+        "name": "Daily Noya Diganta",
         "fetch": fetch_html,
         "parse": noyadigantho.parse_dailynoyadiganta,
         "build_url": lambda page, t: f"https://dailynayadiganta.com/{t}?page={page}",
@@ -87,7 +88,7 @@ SITES = [
         "language": "BN"
     },
     {
-        "name": "DailySangram",
+        "name": "Daily Sangram",
         "fetch": fetch_html,
         "parse": dailysangram.parse_dailysangram,
         "build_url": lambda page, t: f"https://dailysangram.com/{t}/?page={page}",
@@ -157,6 +158,22 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
                 "technology": "tech"
+            },
+            "total_pages": 3,
+        },
+        "language": "EN"
+    },
+    {
+        "name": "The Daily Star",
+        "fetch": fetch_html,
+        "parse": the_daily_star.parse_the_daily_star,
+        "build_url": lambda page, t: f"https://www.thedailystar.net/{t}?page={page-1}",
+        "params": {
+            "news_types": {
+                "national": "news/bangladesh/politics",
+                "international": "news/world",
+                "sports": "sports/cricket",
+                "technology": "tech-startup"
             },
             "total_pages": 3,
         },
