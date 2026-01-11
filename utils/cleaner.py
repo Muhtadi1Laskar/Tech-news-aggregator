@@ -40,6 +40,7 @@ def normalize_article(data, news_language = "BN"):
     source = data.get("source", "")
 
     url = canonicalize_url(raw_url)
+    contentHashString = f"title:{title}|url:{url}|category:{category}|source:{source}|language:{news_language}"
     
     article = {
         "id": generate_id(source, url),
@@ -48,7 +49,7 @@ def normalize_article(data, news_language = "BN"):
         "category": category,
         "source": source,
         "language": news_language,
-        "contentHash": hash_data(title + published_date + category),
+        "contentHash": hash_data(contentHashString),
         "publishedDate": published_date,
         "fetchedDate": datetime.now(timezone.utc).isoformat(),
     }
