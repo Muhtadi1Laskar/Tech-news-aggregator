@@ -2,17 +2,17 @@ from configparser import ParsingError
 from bs4 import BeautifulSoup
 
 
-def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
+def parse_the_daily_observer(html_content, name, news_type = "sports"):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
     
-    article_card = soup.select("article.p-4")
+    article_card = soup.select("div.title_inner")
 
     if not article_card:
-        raise ParsingError("Daily Noya Digantha layout changed")
+        raise ParsingError("The Daily Observer layout changed")
     
     for card in article_card:
-        title_tag = card.select_one("div h3 a")
+        title_tag = card.select_one("a")
 
         if not title_tag:
             continue
@@ -26,4 +26,3 @@ def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
         })
 
     return articles
-    
