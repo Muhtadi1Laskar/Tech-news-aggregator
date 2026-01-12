@@ -8,7 +8,8 @@ from parsers import (
     dailysangram,
     bonikbartha,
     the_business_standard,
-    the_daily_star
+    the_daily_star,
+    the_financial_times
 )
 
 SITES = [
@@ -178,5 +179,22 @@ SITES = [
             "total_pages": 3,
         },
         "language": "EN"
+    },
+    {
+        "name": "The Financial Times",
+        "fetch": fetch_json,
+        "parse": the_financial_times.parse_the_financial_times,
+        "build_url": lambda page, t: f"https://api.thefinancialexpress.com.bd/api/en/category/{t}/more?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "world",
+                "sports": "sports",
+                "technology": "sci-tech"
+            },
+            "total_pages": 5,
+        },
+        "language": "EN"
     }
 ]
+

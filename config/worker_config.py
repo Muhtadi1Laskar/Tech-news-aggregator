@@ -52,5 +52,11 @@ site_configs = {
         "max_workers": 3, 
         "delay": 2.0, 
         "timeout": 15
-    },
+    }, 
+    "The Financial Times": {
+        "max_workers": 3,  # Conservative - major site with protection
+        "delay": 2.5,
+        "timeout": 20,
+        "retries": 2,
+    }
 }
