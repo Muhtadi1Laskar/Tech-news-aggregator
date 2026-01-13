@@ -57,3 +57,17 @@ def save_to_database(articles):
         }
     except Exception as e:
         print(f"An error occured: {e}")
+
+
+def read_article(query):
+    if not isinstance(query, dict):
+        print("Invalid query. Query must be dictionary")
+        return
+    
+    try:
+        result = collections.find(query)
+
+        return result
+    except Exception as e:
+        print(f"Failed to read data from the database: {e}")
+        

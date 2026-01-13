@@ -1,8 +1,11 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
+from dateutil import parser
 from typing import Any, Dict, List, Union
 import logging
+
+from model.database import read_article
 
 # Optional: Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -93,12 +96,12 @@ def save_to_json(data: Any, filename: str, output_dir: str = "Data") -> str:
 def get_last_run_index():
     base_dir = "Data"
     file_path = os.path.join(base_dir, "runStats.json")
-    
+
     os.makedirs(base_dir, exist_ok=True)
 
     if not os.path.exists(file_path):
         try:
-            with open(file_path, 'w') as f:
+            with open(file_path, "w") as f:
                 json.dump([], f, indent=4)
             return 0
         except IOError as e:
@@ -106,14 +109,14 @@ def get_last_run_index():
             return 0
 
     try:
-        with open(file_path, 'r') as f:
+        with open(file_path, "r") as f:
             data = json.load(f)
-            
+
             if isinstance(data, list) and len(data) > 0:
                 last_entry = data[-1]
                 if isinstance(last_entry, dict):
                     return last_entry.get("run_index", 0)
-            
+
             return 0
 
     except json.JSONDecodeError as e:
@@ -122,7 +125,7 @@ def get_last_run_index():
     except Exception as e:
         logger.warning(f"Error reading {file_path}: {e}. Returning 0.")
         return 0
-        
+
 
 def dedupe(articles):
     seen = set()
@@ -136,3 +139,31 @@ def dedupe(articles):
             unique.append(a)
 
     return unique
+
+
+def convert_to_epoch(value):
+    if value is None:
+        return None
+
+    if isinstance(value, (int, float)) or str(value).isdigit():
+        value = int(value)
+
+        if value > 10_000_000_000:
+            return value // 1000
+
+        return value
+
+    try:
+        dt = parser.parse(value)
+
+        if dt.tzinfo is None:
+            dt = dt.replace(tzinfo=timezone.utc)
+
+        return int(dt.timestamp())
+
+    except Exception:
+        return None
+
+
+def get_epoch_time():
+    return int(datetime.now(timezone.utc).timestamp())

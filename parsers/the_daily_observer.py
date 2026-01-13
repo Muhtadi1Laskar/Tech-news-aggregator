@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 def parse_the_daily_observer(html_content, name, news_type = "sports"):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
+
+    print(soup)
     
     article_card = soup.select("div.title_inner")
 

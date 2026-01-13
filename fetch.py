@@ -38,6 +38,7 @@ def fetch_function(url):
             url,
             headers=header
         )
+        print("Response: ", response)
         response.raise_for_status()
         return response
     except requests.exceptions.HTTPError as http_err:
