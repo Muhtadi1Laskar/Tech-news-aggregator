@@ -208,7 +208,7 @@ SITES = [
                 "international": "187",
                 "sports": "185",
             },
-            "total_pages": 5,
+            "total_pages": 2,
         },
         "language": "EN"
     }

@@ -49,5 +49,11 @@ def save_to_database(articles):
                 "matched": result.matched_count,
             }
         )
+
+        return {
+            "inserted": result.upserted_count,
+            "updated": result.modified_count,
+            "matched": result.matched_count,
+        }
     except Exception as e:
         print(f"An error occured: {e}")

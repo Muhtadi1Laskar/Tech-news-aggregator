@@ -49,7 +49,7 @@ from urllib.parse import urlparse
 from functools import partial  # ADD THIS IMPORT
 from config.sites import SITES
 from config.worker_config import site_configs
-from utils.utils import save_to_json, dedupe
+from utils.utils import save_to_json, dedupe, get_last_run_index
 from utils.cleaner import clean_and_process_articles
 from model.database import save_to_database
 
@@ -65,6 +65,12 @@ def run_site_with_rate_limit(
     language = site["language"]
     source_name = site["name"]
 
+    stats = {
+        "site_name": source_name,
+        "successful_fetches": 0,
+        "failed_fetches": 0
+    }
+
     # Track last request time per domain for rate limiting
     last_request_time = defaultdict(float)
 
@@ -74,6 +80,8 @@ def run_site_with_rate_limit(
         for i in range(1, total_pages + 1):
             url = site["build_url"](i, value)
             urls_to_fetch.append((url, key))
+    
+    stats["total_urls_attempted"] = len(urls_to_fetch)
 
     def fetch_with_rate_limit(
         site_info: Dict,
@@ -128,25 +136,40 @@ def run_site_with_rate_limit(
                 articles = future.result(timeout=30)
                 if articles:
                     all_articles.extend(articles)
+                    stats["successful_fetches"] += 1
+                else:
+                    stats["failed_fetches"] += 1
+
             except concurrent.futures.TimeoutError:
                 print(
                     f"[TIMEOUT] {site['name']} {url}: Request timed out after 30 seconds"
                 )
+                stats["failed_fetches"] += 1
             except Exception as e:
                 print(f"[ERROR] {site['name']} {url}: {e}")
+                stats["failed_fetches"] += 1
 
     # Process collected articles
     if all_articles:
         cleaned_articles = clean_and_process_articles(all_articles, language)
         final_articles = dedupe(cleaned_articles)
-        save_to_database(final_articles)
+        run_stats = save_to_database(final_articles)
 
-    return all_articles
+        stats["new_created_articles"] = run_stats.get("inserted", "")
+        stats["updated_existing_articles"] = run_stats.get("updated", "")
+        stats["duplicate_articles"] = run_stats.get("matched", "")
+
+    return stats
 
 
 def main_with_rate_limit():
     """Main function with rate limiting."""
     print("Started Scraping")
+
+    stats_list = []
+
+    run_index = get_last_run_index() + 1 
+
 
     for site in SITES:
         site_name = site.get("name", "")
@@ -162,16 +185,22 @@ def main_with_rate_limit():
         print(f"   Config: {max_workers} workers, {delay}s delay, {timeout}s timeout")
 
         try:
-            run_site_with_rate_limit(
+            stats = run_site_with_rate_limit(
                 site,
                 total_pages=total_pages,
                 max_workers=max_workers,
                 delay=delay,
             )
+            stats["run_index"] = run_index
+            stats_list.append(stats)
+
+            
         except Exception as e:
             print(f"[SITE ERROR] {site_name}: {e}")
 
     print("Finished Scraping")
+    save_to_json(stats_list, "runStats")
 
 
-main_with_rate_limit()
+if __name__ == "__main__":
+    main_with_rate_limit()
