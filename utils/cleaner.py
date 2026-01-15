@@ -40,12 +40,16 @@ def clean_and_process_articles(articles, news_language):
 def normalize_article(data, news_language="BN"):
     title = clean_text(data.get("title", ""))
     raw_url = data.get("link")
-    published_date = data.get("publish_date", "")
+    raw_published_date  = data.get("publish_date", "")
     category = data.get("news_type")
     source = data.get("source", "")
 
+    fetchedDate = get_epoch_time()
     url = canonicalize_url(raw_url)
     contentHashString = f"title:{title}|url:{url}|category:{category}|source:{source}|language:{news_language}"
+    
+    publishedDate = convert_to_epoch(raw_published_date)
+    sortDate = publishedDate if publishedDate else fetchedDate
 
     article = {
         "id": generate_id(source, url),
@@ -55,8 +59,9 @@ def normalize_article(data, news_language="BN"):
         "source": source,
         "language": news_language,
         "contentHash": hash_data(contentHashString),
-        "publishedDate": convert_to_epoch(published_date),
-        "fetchedDate": get_epoch_time(),
+        "publishedDate": convert_to_epoch(publishedDate),
+        "fetchedDate": fetchedDate,
+        "sortDate": sortDate
     }
 
     return article
