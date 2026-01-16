@@ -59,12 +59,9 @@ def normalize_article(data, news_language="BN"):
         "source": source,
         "language": news_language,
         "contentHash": hash_data(contentHashString),
-        "publishedDate": convert_to_epoch(publishedDate),
+        "publishedDate": publishedDate,
         "fetchedDate": fetchedDate,
         "sortDate": sortDate
     }
 
     return article
-
-
-

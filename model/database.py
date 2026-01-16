@@ -20,19 +20,23 @@ def save_to_database(articles):
     operations = []
 
     for article in articles:
-        article_id = article["id"]
-        content_hash = article["contentHash"]
-
         operations.append(
             UpdateOne(
-                {"_id": article_id},
+                {"_id": article["id"]},
                 {
                     "$setOnInsert": {
-                        "_id": article_id,
+                        "_id": article["id"],
                         "createdAt": article["fetchedDate"],
+                        "sortDate": article["sortDate"],
+                        "publishedDate": article["publishedDate"],
+                        "url": article["url"],
+                        "source": article["source"],
+                        "language": article["language"]
                     },
                     "$set": {
-                        **article,
+                        "title": article["title"],
+                        "category": article["category"],
+                        "contentHash": article["contentHash"],
                         "lastSeenAt": article["fetchedDate"],
                     },
                 },
