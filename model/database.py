@@ -4,7 +4,7 @@ from pymongo import MongoClient, UpdateOne
 
 load_dotenv()
 
-database_url = os.getenv("DATABASE_URL")
+database_url = os.getenv("DATABASE_URL_PROD")
 database_name = os.getenv("DATABASE_NAME")
 collection_name = os.getenv("DATABASE_COLLECTION")
 
@@ -31,7 +31,8 @@ def save_to_database(articles):
                         "publishedDate": article["publishedDate"],
                         "url": article["url"],
                         "source": article["source"],
-                        "language": article["language"]
+                        "language": article["language"],
+                        "dateSource": article["dateSource"]
                     },
                     "$set": {
                         "title": article["title"],

@@ -93,7 +93,7 @@ def run_site_with_rate_limit(
                 articles = future.result(timeout=30)
                 if articles:
                     all_articles.extend(articles)
-                    stats["successful_fetches"] += 1
+                    stats["successful_fetches"] += 1 # Fix this 
                 else:
                     stats["failed_fetches"] += 1
 

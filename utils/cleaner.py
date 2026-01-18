@@ -50,6 +50,7 @@ def normalize_article(data, news_language="BN"):
     
     publishedDate = convert_to_epoch(raw_published_date)
     sortDate = publishedDate if publishedDate else fetchedDate
+    dateSource = "published" if publishedDate else "fetched"
 
     article = {
         "id": generate_id(source, url),
@@ -61,7 +62,8 @@ def normalize_article(data, news_language="BN"):
         "contentHash": hash_data(contentHashString),
         "publishedDate": publishedDate,
         "fetchedDate": fetchedDate,
-        "sortDate": sortDate
+        "sortDate": sortDate,
+        "dateSource": dateSource
     }
 
     return article
