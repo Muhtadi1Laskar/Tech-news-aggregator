@@ -1,16 +1,16 @@
 from fetch import fetch_html, fetch_json
 from parsers import (
-    amardesh, 
-    prothomalo, 
-    kalerkantho, 
-    noyadigantho, 
-    jugantor, 
+    amardesh,
+    prothomalo,
+    kalerkantho,
+    noyadigantho,
+    jugantor,
     dailysangram,
     bonikbartha,
     the_business_standard,
     the_daily_star,
     the_financial_times,
-    the_daily_observer
+    the_daily_observer,
 )
 
 SITES = [
@@ -27,13 +27,13 @@ SITES = [
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Prothom Alo",
         "fetch": fetch_json,
         "parse": prothomalo.parse_prothomalo,
-        "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={page}&limit=10",
+        "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={(page*10)-5}&limit=10",
         "params": {
             "news_types": {
                 "national": "bangladesh",
@@ -42,7 +42,7 @@ SITES = [
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Kaler Kantho",
@@ -57,7 +57,7 @@ SITES = [
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Daily Noya Diganta",
@@ -72,7 +72,7 @@ SITES = [
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Jugantor",
@@ -81,13 +81,13 @@ SITES = [
         "build_url": lambda page, t: f"https://www.jugantor.com/ajax/load/categorynews/{t}/20/{page}/10",
         "params": {
             "news_types": {
-                "national": '5',
-                "international": '6',
-                "sports": '8',
+                "national": "5",
+                "international": "6",
+                "sports": "8",
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Daily Sangram",
@@ -102,7 +102,7 @@ SITES = [
             },
             "total_pages": 5,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Bonik Bartha (Bangla)",
@@ -117,7 +117,7 @@ SITES = [
             },
             "total_pages": 1,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "Bonik Bartha (English)",
@@ -132,7 +132,7 @@ SITES = [
             },
             "total_pages": 1,
         },
-        "language": "EN"
+        "language": "EN",
     },
     {
         "name": "The Business Standard (Bangla)",
@@ -143,11 +143,11 @@ SITES = [
             "news_types": {
                 "national": "bangladesh",
                 "international": "international",
-                "sports": "sports"
+                "sports": "sports",
             },
             "total_pages": 3,
         },
-        "language": "BN"
+        "language": "BN",
     },
     {
         "name": "The Business Standard (English)",
@@ -159,11 +159,11 @@ SITES = [
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sports",
-                "technology": "tech"
+                "technology": "tech",
             },
             "total_pages": 3,
         },
-        "language": "EN"
+        "language": "EN",
     },
     {
         "name": "The Daily Star",
@@ -175,11 +175,11 @@ SITES = [
                 "national": "news/bangladesh/politics",
                 "international": "news/world",
                 "sports": "sports/cricket",
-                "technology": "tech-startup"
+                "technology": "tech-startup",
             },
             "total_pages": 3,
         },
-        "language": "EN"
+        "language": "EN",
     },
     {
         "name": "The Financial Times",
@@ -191,11 +191,11 @@ SITES = [
                 "national": "national",
                 "international": "world",
                 "sports": "sports",
-                "technology": "sci-tech"
+                "technology": "sci-tech",
             },
             "total_pages": 5,
         },
-        "language": "EN"
+        "language": "EN",
     },
     {
         "name": "The Daily Observer",
@@ -210,7 +210,6 @@ SITES = [
             },
             "total_pages": 2,
         },
-        "language": "EN"
-    }
+        "language": "EN",
+    },
 ]
-

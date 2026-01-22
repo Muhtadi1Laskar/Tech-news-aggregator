@@ -63,7 +63,7 @@ def run_site_with_rate_limit(
 
         # Make the request
         try:
-            raw = site_info["fetch"](url)
+            raw = site_info["fetch"](url) # Scraping function
             # Update last request time for this domain
             last_times[domain] = time.time()
             articles = site_info["parse"](raw, source, key)
