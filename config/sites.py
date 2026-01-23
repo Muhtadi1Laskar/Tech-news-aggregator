@@ -46,6 +46,21 @@ SITES = [
         "language": "BN",
     },
     {
+        "name": "Prothom Alo (English)",
+        "fetch": fetch_json,
+        "parse": prothomalo.parse_prothomalo,
+        "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports"
+            },
+            "total_pages": 5,
+        },
+        "language": "EN",
+    },
+    {
         "name": "Kaler Kantho",
         "fetch": fetch_json,
         "parse": kalerkantho.parse_kalerkantho,
