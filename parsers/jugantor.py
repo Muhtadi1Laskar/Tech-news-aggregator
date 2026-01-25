@@ -8,7 +8,8 @@ def parse_jugantor(json_data, name, news_type = "sports"):
             "link": story["url"],
             "publish_date": story["created_at"],
             "news_type": news_type,
-            "source": name
+            "source": name,
+            "paragraph": story.get("description", "")
         })
     
     return articles

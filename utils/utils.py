@@ -1,9 +1,13 @@
-import json
+import re
 import os
-from datetime import datetime, timezone
-from dateutil import parser
-from typing import Any, Dict, List, Union
+import json
 import logging
+from dateutil import parser
+from fetch import fetch_html
+from bs4 import BeautifulSoup
+from configparser import ParsingError
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Union
 
 from model.database import read_article
 
@@ -167,3 +171,60 @@ def convert_to_epoch(value):
 
 def get_epoch_time():
     return int(datetime.now(timezone.utc).timestamp())
+
+
+def remove_tag_from_text(text):
+    clean_text = re.sub(r'</?[pP]>', '', text)
+    return clean_text.strip()
+
+
+def clean_text(text):
+    text = text.replace("\n", " ")
+    return " ".join(text.split()).strip()
+
+
+def parse_article(slug, link):
+    all_papers = {
+        "Amar Desh": {
+            "selector": "div[class='block-full_richtext'] p",
+            "index": 3
+        },
+        "Daily Noya Diganta": {
+            "selector": "div[class='post-body'] div p",
+            "index": 4
+        },
+        "Daily Sangram": {
+            "selector": "div[class='post-content'] div div p",
+            "index": 3
+        },
+        "Bonik Bartha (Bangla)": {
+            "selector": "div[id='below-summary'] + p",
+            "index": 1
+        },
+        "The Business Standard (Bangla)": {
+            "selector": "div[class='section-content margin-bottom-2'] p",
+            "index": 1
+        }
+
+    }
+
+    paper = all_papers.get(slug, "")
+    if not paper:
+        raise ValueError(f"Unsupported paper: {slug}")
+    
+    selector = paper.get("selector", "")
+    total_sentence = paper.get("index", "")
+
+    html_content = fetch_html(link)
+    if not html_content:
+        raise ParsingError("Failed to fetch article HTML")
+    soup = BeautifulSoup(html_content, "html.parser")
+
+    article_body = soup.select(selector)
+    if not article_body:
+        raise ParsingError("The article layout changed")
+    
+    first_few_lines = article_body[0:total_sentence] # Selecting the text of the first 3 paragraph
+    text = [clean_text(p.get_text(strip=True)) for p in first_few_lines]
+
+    return " ".join(text)

@@ -1,5 +1,6 @@
 from configparser import ParsingError
 from bs4 import BeautifulSoup
+from utils.utils import parse_article
 
 
 def parse_bonikbartha(html_content, name, news_type = "sports"):
@@ -21,12 +22,18 @@ def parse_bonikbartha(html_content, name, news_type = "sports"):
 
         full_url = base_url + title_tag["href"]
 
+        try:
+            text = parse_article(name, full_url) if name == "Bonik Bartha (Bangla)" else ""
+        except Exception as e:
+            text = ""
+
         articles.append({
             "title": title_tag.get_text(strip=True),
             "link": full_url,
             "publish_date": date_time_tag.get_text(strip=True),
             "news_type": news_type,
-            "source": name
+            "source": name,
+            "paragraph": text
         })
 
     return articles

@@ -1,5 +1,6 @@
 from configparser import ParsingError
 from bs4 import BeautifulSoup
+from utils.utils import parse_article
 
 
 def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
@@ -13,16 +14,25 @@ def parse_dailynoyadiganta(html_content, name, news_type = "sports"):
     
     for card in article_card:
         title_tag = card.select_one("div h3 a")
+        
 
         if not title_tag:
             continue
+
+        link = title_tag["href"]
+        
+        try:
+            text = parse_article(name, link)
+        except Exception as e:
+            text = ""
 
         articles.append({
             "title": title_tag.get_text(strip=True),
             "link": title_tag["href"],
             "publish_date": None,
             "news_type": news_type,
-            "source": name
+            "source": name,
+            "paragraph": text
         })
 
     return articles

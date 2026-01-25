@@ -1,5 +1,6 @@
 from configparser import ParsingError
 from bs4 import BeautifulSoup
+from utils.utils import parse_article
 
 
 def parse_dailysangram(html_content, name, news_type = "sports"):
@@ -19,12 +20,18 @@ def parse_dailysangram(html_content, name, news_type = "sports"):
         if not title_tag:
             continue
 
+        try:
+            text = parse_article(name, full_url)
+        except Exception as e:
+            text = e
+
         articles.append({
             "title": title_tag.get_text(strip=True),
             "link": full_url,
             "publish_date": None,
             "news_type": news_type,
-            "source": name
+            "source": name,
+            "paragraph": text
         })
 
     return articles
