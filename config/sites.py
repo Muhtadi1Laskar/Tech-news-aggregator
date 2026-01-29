@@ -15,6 +15,99 @@ from parsers import (
 
 SITES = [
     {
+        "name": "Prothom Alo (English)",
+        "fetch": fetch_json,
+        "parse": prothomalo.parse_prothomalo,
+        "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "Bonik Bartha (English)",
+        "fetch": fetch_html,
+        "parse": bonikbartha.parse_bonikbartha,
+        "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "The Business Standard (English)",
+        "fetch": fetch_html,
+        "parse": the_business_standard.parse_the_daily_standared,
+        "build_url": lambda page, t: f"https://www.tbsnews.net/{t}?page={page-1}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+                "technology": "tech",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "The Daily Star",
+        "fetch": fetch_html,
+        "parse": the_daily_star.parse_the_daily_star,
+        "build_url": lambda page, t: f"https://www.thedailystar.net/{t}?page={page-1}",
+        "params": {
+            "news_types": {
+                "national": "news/bangladesh/politics",
+                "international": "news/world",
+                "sports": "sports/cricket",
+                "technology": "tech-startup",
+            },
+            "total_pages": 2,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "The Financial Times",
+        "fetch": fetch_json,
+        "parse": the_financial_times.parse_the_financial_times,
+        "build_url": lambda page, t: f"https://api.thefinancialexpress.com.bd/api/en/category/{t}/more?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "world",
+                "sports": "sports",
+                "technology": "sci-tech",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "The Daily Observer",
+        "fetch": fetch_html,
+        "parse": the_daily_observer.parse_the_daily_observer,
+        "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
+        "params": {
+            "news_types": {
+                "national": "186",
+                "international": "187",
+                "sports": "185",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+    },
+    {
         "name": "Amar Desh",
         "fetch": fetch_json,
         "parse": amardesh.parse_amardesh,
@@ -25,40 +118,9 @@ SITES = [
                 "international": "world",
                 "sports": "sports",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
-    },
-    {
-        "name": "Prothom Alo",
-        "fetch": fetch_json,
-        "parse": prothomalo.parse_prothomalo,
-        "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={(page*10)-5}&limit=10",
-        "params": {
-            "news_types": {
-                "national": "bangladesh",
-                "international": "world",
-                "sports": "sports",
-                "technology": "technology"
-            },
-            "total_pages": 5,
-        },
-        "language": "BN",
-    },
-    {
-        "name": "Prothom Alo (English)",
-        "fetch": fetch_json,
-        "parse": prothomalo.parse_prothomalo,
-        "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
-        "params": {
-            "news_types": {
-                "national": "bangladesh",
-                "international": "international",
-                "sports": "sports"
-            },
-            "total_pages": 5,
-        },
-        "language": "EN",
     },
     {
         "name": "Kaler Kantho",
@@ -71,7 +133,7 @@ SITES = [
                 "international": "world",
                 "sports": "sport",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
     },
@@ -86,7 +148,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
     },
@@ -101,7 +163,7 @@ SITES = [
                 "international": "6",
                 "sports": "8",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
     },
@@ -116,7 +178,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
     },
@@ -136,19 +198,20 @@ SITES = [
         "language": "BN",
     },
     {
-        "name": "Bonik Bartha (English)",
-        "fetch": fetch_html,
-        "parse": bonikbartha.parse_bonikbartha,
-        "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
+        "name": "Prothom Alo",
+        "fetch": fetch_json,
+        "parse": prothomalo.parse_prothomalo,
+        "build_url": lambda page, t: f"https://www.prothomalo.com/api/v1/collections/{t}-all?item-type=story&offset={(page*10)-5}&limit=10",
         "params": {
             "news_types": {
                 "national": "bangladesh",
-                "international": "international",
+                "international": "world",
                 "sports": "sports",
+                "technology": "technology",
             },
-            "total_pages": 1,
+            "total_pages": 3,
         },
-        "language": "EN",
+        "language": "BN",
     },
     {
         "name": "The Business Standard (Bangla)",
@@ -161,71 +224,8 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 5,
+            "total_pages": 3,
         },
         "language": "BN",
-    },
-    {
-        "name": "The Business Standard (English)",
-        "fetch": fetch_html,
-        "parse": the_business_standard.parse_the_daily_standared,
-        "build_url": lambda page, t: f"https://www.tbsnews.net/{t}?page={page-1}",
-        "params": {
-            "news_types": {
-                "national": "bangladesh",
-                "international": "international",
-                "sports": "sports",
-                "technology": "tech",
-            },
-            "total_pages": 5,
-        },
-        "language": "EN",
-    },
-    {
-        "name": "The Daily Star",
-        "fetch": fetch_html,
-        "parse": the_daily_star.parse_the_daily_star,
-        "build_url": lambda page, t: f"https://www.thedailystar.net/{t}?page={page-1}",
-        "params": {
-            "news_types": {
-                "national": "news/bangladesh/politics",
-                "international": "news/world",
-                "sports": "sports/cricket",
-                "technology": "tech-startup",
-            },
-            "total_pages": 5,
-        },
-        "language": "EN",
-    },
-    {
-        "name": "The Financial Times",
-        "fetch": fetch_json,
-        "parse": the_financial_times.parse_the_financial_times,
-        "build_url": lambda page, t: f"https://api.thefinancialexpress.com.bd/api/en/category/{t}/more?page={page}",
-        "params": {
-            "news_types": {
-                "national": "national",
-                "international": "world",
-                "sports": "sports",
-                "technology": "sci-tech",
-            },
-            "total_pages": 5,
-        },
-        "language": "EN",
-    },
-    {
-        "name": "The Daily Observer",
-        "fetch": fetch_html,
-        "parse": the_daily_observer.parse_the_daily_observer,
-        "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
-        "params": {
-            "news_types": {
-                "national": "186",
-                "international": "187",
-                "sports": "185",
-            },
-            "total_pages": 5,
-        },
-        "language": "EN",
     },
 ]
