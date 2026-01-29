@@ -11,7 +11,11 @@ site_configs = {
         "timeout": 20,
         "retries": 2,  # Add retry for robustness
     },
-    "Kaler Kantho": {"max_workers": 4, "delay": 2.0, "timeout": 15},
+    "Kaler Kantho": {
+        "max_workers": 4, 
+        "delay": 2.0, 
+        "timeout": 25
+    },
     "Daily Noya Diganta": {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
@@ -62,6 +66,6 @@ site_configs = {
     "The Daily Observer": {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
-        "timeout": 15,
+        "timeout": 30,
     }
 }
