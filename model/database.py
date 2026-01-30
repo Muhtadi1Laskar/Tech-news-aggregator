@@ -4,7 +4,7 @@ from pymongo import MongoClient, UpdateOne
 
 load_dotenv()
 
-database_url = os.getenv("DATABASE_URL_LOCAL")
+database_url = os.getenv("DATABASE_URL_PROD")
 database_name = os.getenv("DATABASE_NAME")
 collection_name = os.getenv("DATABASE_COLLECTION")
 
