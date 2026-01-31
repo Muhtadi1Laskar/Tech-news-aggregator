@@ -67,5 +67,10 @@ site_configs = {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 30,
+    },
+    "Ars Technica": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
     }
 }

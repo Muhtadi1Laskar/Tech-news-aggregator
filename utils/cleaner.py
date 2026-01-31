@@ -43,7 +43,7 @@ def normalize_article(data, news_language="BN"):
     raw_published_date  = data.get("publish_date", "")
     category = data.get("news_type")
     source = data.get("source", "")
-    raw_paragraph = data.get("paragraph", "")
+    raw_paragraph = data.get("paragraph", None)
 
     fetchedDate = get_epoch_time()
     url = canonicalize_url(raw_url)

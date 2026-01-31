@@ -11,6 +11,7 @@ from parsers import (
     the_daily_star,
     the_financial_times,
     the_daily_observer,
+    ars_technica
 )
 
 SITES = [
@@ -39,6 +40,20 @@ SITES = [
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sports",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "Ars Technica",
+        "fetch": fetch_html,
+        "parse": ars_technica.parse_ars_technica,
+        "build_url": lambda page, t: f"https://arstechnica.com/{t}/page/{page}/",
+        "params": {
+            "news_types": {
+                "technology-ai": "ai",
+                "technology-gadets": "gadgets",
             },
             "total_pages": 1,
         },
