@@ -23,11 +23,7 @@ def run_site_with_rate_limit(
     language = site["language"]
     source_name = site["name"]
 
-    stats = {
-        "site_name": source_name,
-        "successful_fetches": 0,
-        "failed_fetches": 0
-    }
+    stats = {"site_name": source_name, "successful_fetches": 0, "failed_fetches": 0}
 
     # Track last request time per domain for rate limiting
     last_request_time = defaultdict(float)
@@ -39,7 +35,7 @@ def run_site_with_rate_limit(
         for i in range(1, total_pages + 1):
             url = site["build_url"](i, value)
             urls_to_fetch.append((url, key))
-    
+
     stats["total_urls_attempted"] = len(urls_to_fetch)
 
     def fetch_with_rate_limit(
@@ -51,38 +47,22 @@ def run_site_with_rate_limit(
         min_delay: float,
     ) -> List[Dict]:
         """Fetch a single URL with rate limiting."""
-        # Extract domain for rate limiting
-        # domain = urlparse(url).netloc
-
-        # # Calculate time since last request to this domain
-        # current_time = time.time()
-        # time_since_last = current_time - last_times[domain]
-
-        # # Apply rate limiting
-        # if time_since_last < min_delay:
-        #     sleep_time = min_delay - time_since_last
-        #     time.sleep(sleep_time)
-
-        # # Make the request
-        # try:
-        #     raw = site_info["fetch"](url) # Scraping function
-        #     # Update last request time for this domain
-        #     last_times[domain] = time.time()
-        #     articles = site_info["parse"](raw, source, key)
-        #     return articles
-        # except Exception as e:
-        #     print(f"[ERROR FETCHING] {url}: {e}")
-        #     return []
-
         domain = urlparse(url).netloc
+
+        sleep_time = 0
         with time_lock:  # ← PROTECT ACCESS
             current_time = time.time()
             time_since_last = current_time - last_times[domain]
             if time_since_last < min_delay:
                 sleep_time = min_delay - time_since_last
                 time.sleep(sleep_time)
-            # Update AFTER sleep, still under lock
-            last_times[domain] = time.time()
+                # Update AFTER sleep, still under lock
+                last_times[domain] = current_time + sleep_time
+            else:
+                last_times[domain] = current_time
+
+        if sleep_time > 0:
+            time.sleep(sleep_time)
 
         # Now do the actual request OUTSIDE the lock
         try:
@@ -115,7 +95,7 @@ def run_site_with_rate_limit(
                 if articles:
                     all_articles.extend(articles)
                     if len(articles) > 0:
-                        stats["successful_fetches"] += 1 # Fix this 
+                        stats["successful_fetches"] += 1  # Fix this
                 else:
                     stats["failed_fetches"] += 1
 
@@ -147,8 +127,7 @@ def main_with_rate_limit():
 
     stats_list = []
 
-    run_index = get_last_run_index() + 1 
-
+    run_index = get_last_run_index() + 1
 
     for site in SITES:
         site_name = site.get("name", "")
@@ -158,7 +137,7 @@ def main_with_rate_limit():
         config = site_configs.get(site_name, {})
         max_workers = config.get("max_workers", 3)
         delay = config.get("delay", 1.0)  # 1 second between requests to same domain
-        timeout = config.get('timeout', 30)
+        timeout = config.get("timeout", 30)
 
         print(f"\n📰 Scraping {site_name}")
         print(f"   Config: {max_workers} workers, {delay}s delay, {timeout}s timeout")
@@ -173,7 +152,6 @@ def main_with_rate_limit():
             stats["run_index"] = run_index
             stats_list.append(stats)
 
-            
         except Exception as e:
             print(f"[SITE ERROR] {site_name}: {e}")
 

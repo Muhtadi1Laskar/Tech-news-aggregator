@@ -2,6 +2,19 @@ import requests
 import time
 
 
+session = requests.Session()
+session.headers.update(
+    {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/122.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "bn-BD,bn;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Connection": "keep-alive",
+    }
+)
+
+
 def fetch_html(url):
     response = fetch_function(url)
 
@@ -25,18 +38,9 @@ def fetch_json(url):
     return None
 
 
-def fetch_function(url):
-    header = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-        "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/122.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "bn-BD,bn;q=0.9,en-US;q=0.8,en;q=0.7",
-        "Connection": "keep-alive",
-    }
-
+def fetch_function(url, timeout=15):
     try:
-        response = requests.get(url, headers=header)
+        response = session.get(url, timeout=timeout)
         response.raise_for_status()
         return response
     except requests.exceptions.HTTPError as http_err:
@@ -48,4 +52,3 @@ def fetch_function(url):
     except requests.exceptions.RequestException as req_err:
         print(f"Requests error occured: {req_err}")
     return None
-
