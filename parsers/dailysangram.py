@@ -20,10 +20,10 @@ def parse_dailysangram(html_content, name, news_type = "sports"):
         if not title_tag:
             continue
 
-        try:
-            text = parse_article(name, full_url)
-        except Exception as e:
-            text = e
+        # try:
+        #     text = parse_article(name, full_url)
+        # except Exception as e:
+        #     text = e
 
         articles.append({
             "title": title_tag.get_text(strip=True),
@@ -31,7 +31,7 @@ def parse_dailysangram(html_content, name, news_type = "sports"):
             "publish_date": None,
             "news_type": news_type,
             "source": name,
-            "paragraph": text
+            # "paragraph": text
         })
 
     return articles

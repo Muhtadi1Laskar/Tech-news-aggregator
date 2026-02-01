@@ -7,7 +7,7 @@ def parse_prothomalo(json_data, name, news_type = "sports"):
     for story in stories:
         single_story = story["story"]
         text = single_story.get("cards", "")[0].get("story-elements", "")[0].get("text", "")
-        clean_text = remove_tag_from_text(text)
+        # clean_text = remove_tag_from_text(text)
 
         articles.append({
             "title": single_story["headline"],
@@ -15,7 +15,7 @@ def parse_prothomalo(json_data, name, news_type = "sports"):
             "publish_date": f"{single_story["content-created-at"]}",
             "news_type": news_type,
             "source": name,
-            "paragraph": clean_text
+            # "paragraph": clean_text
         })
     
     return articles

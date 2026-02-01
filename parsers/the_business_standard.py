@@ -21,10 +21,10 @@ def parse_the_daily_standared(html_content, name, news_type = "sports"):
 
         full_url = base_url + title_tag["href"]
 
-        try:
-            text = parse_article(name, full_url) if name == "The Business Standard (Bangla)" else ""
-        except Exception as e:
-            text = ""
+        # try:
+        #     text = parse_article(name, full_url) if name == "The Business Standard (Bangla)" else ""
+        # except Exception as e:
+        #     text = ""
 
         articles.append({
             "title": title_tag.get_text(strip=True),
@@ -32,7 +32,7 @@ def parse_the_daily_standared(html_content, name, news_type = "sports"):
             "publish_date": None,
             "news_type": news_type,
             "source": name,
-            "paragraph": text
+            # "paragraph": text
         })
 
     return articles

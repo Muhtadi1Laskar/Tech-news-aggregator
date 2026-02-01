@@ -22,10 +22,10 @@ def parse_bonikbartha(html_content, name, news_type = "sports"):
 
         full_url = base_url + title_tag["href"]
 
-        try:
-            text = parse_article(name, full_url) if name == "Bonik Bartha (Bangla)" else ""
-        except Exception as e:
-            text = ""
+        # try:
+        #     text = parse_article(name, full_url) if name == "Bonik Bartha (Bangla)" else ""
+        # except Exception as e:
+        #     text = ""
 
         articles.append({
             "title": title_tag.get_text(strip=True),
@@ -33,7 +33,7 @@ def parse_bonikbartha(html_content, name, news_type = "sports"):
             "publish_date": date_time_tag.get_text(strip=True),
             "news_type": news_type,
             "source": name,
-            "paragraph": text
+            # "paragraph": text
         })
 
     return articles
