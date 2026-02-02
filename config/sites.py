@@ -51,7 +51,7 @@ SITES = [
         "name": "Ars Technica",
         "fetch": fetch_html,
         "parse": ars_technica.parse_ars_technica,
-        "build_url": lambda page, t: f"https://arstechnica.com/{t}/page/{page}/",
+        "build_url": lambda page, t: f"https://arstechnica.com/{t}/feed/",
         "params": {
             "news_types": {
                 "technology-ai": "ai",
@@ -249,7 +249,7 @@ SITES = [
         "name": "Bangladesh Pratidin",
         "fetch": fetch_html,
         "parse": bangladesh_protidin.parse_bangladesh_protindin,
-        "build_url": lambda page, t: f"https://www.bd-pratidin.com/{t}?page={page}",
+        "build_url": lambda page, t: f"https://arstechnica.com/gadgets/feed/",
         "params": {
             "news_types": {
                 "national": "national",

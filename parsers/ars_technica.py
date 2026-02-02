@@ -2,30 +2,32 @@ from configparser import ParsingError
 from bs4 import BeautifulSoup
 
 def parse_ars_technica(html_content, name, news_type = "sports"):
-    soup = BeautifulSoup(html_content, "html.parser")
+    soup = BeautifulSoup(html_content, "lxml-xml")
 
     articles = []
 
-    article_card = soup.select("article h2")
+    article_card = soup.select("item")
 
     if not article_card:
         raise ParsingError("Ars Technica layout changed")
     
     for card in article_card:
-        title_tag = card.select_one("div h2 a")
+        title = card.find("title").get_text(strip=True)
+        link = card.find("link").get_text(strip=True)
+        publish_date = card.find("pubDate").get_text(strip=True)
 
-        if not title_tag:
+        if not title or not link:
             continue
 
-        title = title_tag.text.strip()
-        link = title_tag["href"]
-        
-        articles.append({
-            "title": title,
-            "link": link,
-            "publish_date": None,
-            "news_type": "technology",
-            "source": name
-        })
+        articles.append(
+            {
+                "title": title,
+                "link": link,
+                "publish_date": publish_date,
+                "news_type": news_type,
+                "source": name,
+                "paragraph": None,
+            }
+        )
     
     return articles
