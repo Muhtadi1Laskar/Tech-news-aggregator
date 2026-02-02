@@ -114,6 +114,7 @@ def run_site_with_rate_limit(
         final_articles = dedupe(cleaned_articles)
         run_stats = save_to_database(final_articles)
 
+
         stats["new_created_articles"] = run_stats.get("inserted", "")
         stats["updated_existing_articles"] = run_stats.get("updated", "")
         stats["duplicate_articles"] = run_stats.get("matched", "")

@@ -12,7 +12,8 @@ from parsers import (
     the_financial_times,
     the_daily_observer,
     ars_technica,
-    bangladesh_protidin
+    bangladesh_protidin,
+    investing_live_dotcom
 )
 
 SITES = [
@@ -258,5 +259,18 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+    },
+    {
+        "name": "investinglive.com",
+        "fetch": fetch_html,
+        "parse": investing_live_dotcom.parse_investing_livedotcom,
+        "build_url": lambda page, t: f"https://investinglive.com/feed/news",
+        "params": {
+            "news_types": {
+                "international": "international"
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
     },
 ]
