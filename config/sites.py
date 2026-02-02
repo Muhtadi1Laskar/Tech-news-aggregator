@@ -11,7 +11,8 @@ from parsers import (
     the_daily_star,
     the_financial_times,
     the_daily_observer,
-    ars_technica
+    ars_technica,
+    bangladesh_protidin
 )
 
 SITES = [
@@ -237,6 +238,21 @@ SITES = [
             "news_types": {
                 "national": "bangladesh",
                 "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 3,
+        },
+        "language": "BN",
+    },
+    {
+        "name": "Bangladesh Pratidin",
+        "fetch": fetch_html,
+        "parse": bangladesh_protidin.parse_bangladesh_protindin,
+        "build_url": lambda page, t: f"https://www.bd-pratidin.com/{t}?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "international-news",
                 "sports": "sports",
             },
             "total_pages": 3,

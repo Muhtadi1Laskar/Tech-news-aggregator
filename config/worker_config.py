@@ -72,5 +72,10 @@ site_configs = {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 15,
+    },
+    "Bangladesh Pratidin": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
     }
 }
