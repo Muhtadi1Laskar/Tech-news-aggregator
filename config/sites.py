@@ -13,7 +13,7 @@ from parsers import (
     the_daily_observer,
     ars_technica,
     bangladesh_protidin,
-    investing_live_dotcom
+    investing_live_dotcom,
 )
 
 SITES = [
@@ -266,9 +266,7 @@ SITES = [
         "parse": investing_live_dotcom.parse_investing_livedotcom,
         "build_url": lambda page, t: f"https://investinglive.com/feed/news",
         "params": {
-            "news_types": {
-                "international": "international"
-            },
+            "news_types": {"international": "international"},
             "total_pages": 1,
         },
         "language": "EN",

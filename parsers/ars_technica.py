@@ -24,7 +24,7 @@ def parse_ars_technica(html_content, name, news_type = "sports"):
                 "title": title,
                 "link": link,
                 "publish_date": publish_date,
-                "news_type": news_type,
+                "news_type": "technology",
                 "source": name,
                 "paragraph": None,
             }
