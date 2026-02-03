@@ -14,7 +14,8 @@ from parsers import (
     ars_technica,
     bangladesh_protidin,
     investing_live_dotcom,
-    daily_ittefaq
+    daily_ittefaq,
+    dhaka_tribune
 )
 
 SITES = [
@@ -250,7 +251,7 @@ SITES = [
         "name": "Bangladesh Pratidin",
         "fetch": fetch_html,
         "parse": bangladesh_protidin.parse_bangladesh_protindin,
-        "build_url": lambda page, t: f"https://arstechnica.com/gadgets/feed/",
+        "build_url": lambda page, t: f"https://www.bd-pratidin.com/{t}/page={page}",
         "params": {
             "news_types": {
                 "national": "national",
@@ -282,6 +283,22 @@ SITES = [
                 "national": "national",
                 "international": "world-news",
                 "sports": "sports"
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+    },
+    {
+        "name": "Dhaka Tribune",
+        "fetch": fetch_html,
+        "parse": dhaka_tribune.parse_dhaka_tribune,
+        "build_url": lambda page, t: f"https://bangla.dhakatribune.com/feed/{t}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sport",
+                "technology": "technology"
             },
             "total_pages": 1,
         },
