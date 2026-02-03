@@ -15,7 +15,8 @@ from parsers import (
     bangladesh_protidin,
     investing_live_dotcom,
     daily_ittefaq,
-    dhaka_tribune
+    dhaka_tribune,
+    daily_inqilab
 )
 
 SITES = [
@@ -301,6 +302,21 @@ SITES = [
                 "technology": "technology"
             },
             "total_pages": 1,
+        },
+        "language": "BN",
+    },
+    {
+        "name": "The Daily Inquilab",
+        "fetch": fetch_html,
+        "parse": daily_inqilab.parse_daily_inqilab,
+        "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 3,
         },
         "language": "BN",
     },

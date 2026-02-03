@@ -77,5 +77,15 @@ site_configs = {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 15,
+    },
+    "Dhaka Tribune": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
+    },
+    "The Daily Inquilab": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
     }
 }
