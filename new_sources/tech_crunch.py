@@ -1,8 +1,7 @@
 from utils.parser.rss_parser import rss_parser
 from utils.utils import EmptyArticleError
 
-
-def parse_ars_technica(html_content, name, news_type="sports"):
+def parse_tech_crunch(html_content, name, news_type = "sports"):
     articles = rss_parser(html_content, name, news_type)
 
     if len(articles) == 0:

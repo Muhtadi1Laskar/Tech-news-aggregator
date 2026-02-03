@@ -1,33 +1,10 @@
-from configparser import ParsingError
-from bs4 import BeautifulSoup
-import lxml
+from utils.parser.rss_parser import rss_parser
+from utils.utils import EmptyArticleError
 
 def parse_investing_livedotcom(html_content, name, news_type="sports"):
-    soup = BeautifulSoup(html_content, "lxml-xml")
-    articles = []
+    articles = rss_parser(html_content, name, news_type)
 
-    article_card = soup.find_all("item")
-
-    if not article_card:
-        raise ParsingError("investinglive.com layout changed")
-
-    for card in article_card:
-        title = card.find("title").get_text(strip=True)
-        link = card.find("link").get_text(strip=True)
-        publish_date = card.find("pubDate").get_text(strip=True)
-
-        if not title or not link:
-            continue
-
-        articles.append(
-            {
-                "title": title,
-                "link": link,
-                "publish_date": publish_date,
-                "news_type": news_type,
-                "source": name,
-                "paragraph": None,
-            }
-        )
+    if len(articles) == 0:
+        raise EmptyArticleError(name)
 
     return articles

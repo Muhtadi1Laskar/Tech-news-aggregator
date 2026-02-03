@@ -1,34 +1,13 @@
-from configparser import ParsingError
-from bs4 import BeautifulSoup
-import lxml
+from utils.parser.rss_parser import rss_parser
+from utils.utils import EmptyArticleError
+
 
 def parse_daily_ittefaq(html_content, name, news_type="sports"):
-    soup = BeautifulSoup(html_content, "lxml-xml")
-    articles = []
+    articles = rss_parser(html_content, name, news_type)
 
-    article_card = soup.find_all("item")
+    if len(articles) == 0:
+        raise EmptyArticleError(name)
 
-    if not article_card:
-        raise ParsingError("Daily Ittefaq layout changed")
+    total_articles_to_save = len(articles) // 2 if len(articles) > 50 else len(articles)
 
-    for card in article_card[:51]:
-        title = card.find("title").get_text(strip=True)
-        link = card.find("link").get_text(strip=True)
-        publish_date = card.find("pubDate").get_text(strip=True)
-        paragraph = card.find("description").get_text(strip=True)
-
-        if not title or not link:
-            continue
-
-        articles.append(
-            {
-                "title": title,
-                "link": link,
-                "publish_date": publish_date,
-                "news_type": news_type,
-                "source": name,
-                "paragraph": None,
-            }
-        )
-
-    return articles
+    return articles[:total_articles_to_save]

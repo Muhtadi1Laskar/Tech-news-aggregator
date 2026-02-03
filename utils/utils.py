@@ -228,3 +228,11 @@ def parse_article(slug, link):
     text = [clean_text(p.get_text(strip=True)) for p in first_few_lines]
 
     return " ".join(text)
+
+
+class EmptyArticleError(Exception):
+    def __init__(self, message):
+        self.message = message
+    
+    def __str__(self):
+        return f"Empty Article from {self.message}'s rss feed"

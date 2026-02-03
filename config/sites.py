@@ -16,7 +16,8 @@ from new_sources import (
     investing_live_dotcom,
     daily_ittefaq,
     dhaka_tribune,
-    daily_inqilab
+    daily_inqilab,
+    tech_crunch,
 )
 
 SITES = [
@@ -283,7 +284,7 @@ SITES = [
             "news_types": {
                 "national": "national",
                 "international": "world-news",
-                "sports": "sports"
+                "sports": "sports",
             },
             "total_pages": 1,
         },
@@ -299,7 +300,7 @@ SITES = [
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sport",
-                "technology": "technology"
+                "technology": "technology",
             },
             "total_pages": 1,
         },
@@ -319,5 +320,16 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+    },
+    {
+        "name": "Tech Crunch",
+        "fetch": fetch_html,
+        "parse": tech_crunch.parse_tech_crunch,
+        "build_url": lambda page, t: f"https://techcrunch.com/feed/",
+        "params": {
+            "news_types": {"technology": "technology"},
+            "total_pages": 1,
+        },
+        "language": "EN",
     },
 ]
