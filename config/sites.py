@@ -1,5 +1,5 @@
 from fetch import fetch_html, fetch_json
-from parsers import (
+from new_sources import (
     amardesh,
     prothomalo,
     kalerkantho,
