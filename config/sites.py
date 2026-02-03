@@ -18,7 +18,8 @@ from new_sources import (
     dhaka_tribune,
     daily_inqilab,
     tech_crunch,
-    wired
+    wired,
+    the_hacker_news,
 )
 
 SITES = [
@@ -340,6 +341,17 @@ SITES = [
         "build_url": lambda page, t: f"https://www.wired.com/feed/rss",
         "params": {
             "news_types": {"international": "international"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "The Hacker News",
+        "fetch": fetch_html,
+        "parse": the_hacker_news.parse_the_hacker_news,
+        "build_url": lambda page, t: f"https://feeds.feedburner.com/TheHackersNews",
+        "params": {
+            "news_types": {"technology": "technology"},
             "total_pages": 1,
         },
         "language": "EN",
