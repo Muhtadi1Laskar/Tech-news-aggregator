@@ -18,6 +18,7 @@ from new_sources import (
     dhaka_tribune,
     daily_inqilab,
     tech_crunch,
+    wired
 )
 
 SITES = [
@@ -328,6 +329,17 @@ SITES = [
         "build_url": lambda page, t: f"https://techcrunch.com/feed/",
         "params": {
             "news_types": {"technology": "technology"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+    },
+    {
+        "name": "Wired",
+        "fetch": fetch_html,
+        "parse": wired.parse_wired,
+        "build_url": lambda page, t: f"https://www.wired.com/feed/rss",
+        "params": {
+            "news_types": {"international": "international"},
             "total_pages": 1,
         },
         "language": "EN",
