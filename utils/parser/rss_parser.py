@@ -22,7 +22,10 @@ def rss_parser(html_content, name, news_type, selector={}):
 
     for card in article_card:
         title = card.find(title_selector).get_text(strip=True)
-        link = card.find(link_selector).get_text(strip=True)
+        link = (
+            card.find(link_selector).get_text(strip=True)
+            or card.find(link_selector)["href"]
+        )
         publish_date = card.find(publish_date_selector).get_text(strip=True)
         paragraph = card.find(paragraph_selector).get_text(strip=True)
 

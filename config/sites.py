@@ -63,6 +63,7 @@ SITES = [
         "language": "EN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
@@ -294,6 +295,7 @@ SITES = [
         "language": "BN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
@@ -316,6 +318,7 @@ SITES = [
         "language": "BN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
@@ -348,6 +351,7 @@ SITES = [
         "language": "EN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
@@ -365,6 +369,7 @@ SITES = [
         "language": "EN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
@@ -382,9 +387,30 @@ SITES = [
         "language": "EN",
         "selector": {
             "item_selector": "item",
+            "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
+        },
+    },
+    {
+        "name": "The Verge",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.theverge.com/rss/{t}/index.xml",
+        "params": {
+            "news_types": {
+                "technology": "tech",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "entry",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "published",
+            "paragraph_selector": "summary",
         },
     },
 ]
