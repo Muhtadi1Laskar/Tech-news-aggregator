@@ -1,4 +1,4 @@
-def parse_the_financial_times(json_data, name, news_type = "sports"):
+def parse_the_financial_times(json_data, name, news_type, selectors = None):
     articles = []
     stories = json_data.get("items") or json_data.get("posts")
     baseURL = f"https://thefinancialexpress.com.bd"

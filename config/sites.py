@@ -11,16 +11,11 @@ from new_sources import (
     the_daily_star,
     the_financial_times,
     the_daily_observer,
-    ars_technica,
     bangladesh_protidin,
-    investing_live_dotcom,
-    daily_ittefaq,
-    dhaka_tribune,
     daily_inqilab,
-    tech_crunch,
-    wired,
-    the_hacker_news,
 )
+
+from utils.parser.rss_parser import rss_parser
 
 SITES = [
     {
@@ -56,7 +51,7 @@ SITES = [
     {
         "name": "Ars Technica",
         "fetch": fetch_html,
-        "parse": ars_technica.parse_ars_technica,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://arstechnica.com/{t}/feed/",
         "params": {
             "news_types": {
@@ -66,6 +61,12 @@ SITES = [
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
     {
         "name": "The Business Standard (English)",
@@ -269,7 +270,7 @@ SITES = [
     {
         "name": "investinglive.com",
         "fetch": fetch_html,
-        "parse": investing_live_dotcom.parse_investing_livedotcom,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://investinglive.com/feed/news",
         "params": {
             "news_types": {"international": "international"},
@@ -280,7 +281,7 @@ SITES = [
     {
         "name": "The Daily Ittefaq",
         "fetch": fetch_html,
-        "parse": daily_ittefaq.parse_daily_ittefaq,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://www.ittefaq.com.bd/feed/{t}",
         "params": {
             "news_types": {
@@ -291,11 +292,17 @@ SITES = [
             "total_pages": 1,
         },
         "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
     {
         "name": "Dhaka Tribune",
         "fetch": fetch_html,
-        "parse": dhaka_tribune.parse_dhaka_tribune,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://bangla.dhakatribune.com/feed/{t}",
         "params": {
             "news_types": {
@@ -307,6 +314,12 @@ SITES = [
             "total_pages": 1,
         },
         "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
     {
         "name": "The Daily Inquilab",
@@ -326,34 +339,52 @@ SITES = [
     {
         "name": "Tech Crunch",
         "fetch": fetch_html,
-        "parse": tech_crunch.parse_tech_crunch,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://techcrunch.com/feed/",
         "params": {
             "news_types": {"technology": "technology"},
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
     {
         "name": "Wired",
         "fetch": fetch_html,
-        "parse": wired.parse_wired,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://www.wired.com/feed/rss",
         "params": {
             "news_types": {"international": "international"},
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
     {
         "name": "The Hacker News",
         "fetch": fetch_html,
-        "parse": the_hacker_news.parse_the_hacker_news,
+        "parse": rss_parser,
         "build_url": lambda page, t: f"https://feeds.feedburner.com/TheHackersNews",
         "params": {
             "news_types": {"technology": "technology"},
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
     },
 ]

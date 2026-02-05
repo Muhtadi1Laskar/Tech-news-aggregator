@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from utils.utils import parse_article
 
 
-def parse_the_daily_standared(html_content, name, news_type = "sports"):
+def parse_the_daily_standared(html_content, name, news_type, selectors = None):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
     base_url = f"https://www.tbsnews.net"

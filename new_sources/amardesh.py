@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 from utils.utils import parse_article
 
-def parse_amardesh(json_data, name, news_type = "sports"):
+def parse_amardesh(json_data, name, news_type, selectors = None):
     articles = []
     stories = json_data.get("stories") or []
     baseURL = f"https://www.dailyamardesh.com/{news_type}/"

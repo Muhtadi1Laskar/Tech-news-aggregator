@@ -1,4 +1,4 @@
-def parse_jugantor(json_data, name, news_type = "sports"):
+def parse_jugantor(json_data, name, news_type, selectors = None):
     articles = []
     stories = json_data or []
 

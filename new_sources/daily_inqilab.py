@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from utils.utils import parse_article
 
 
-def parse_daily_inqilab(html_content, name, news_type = "sports"):
+def parse_daily_inqilab(html_content, name, news_type, selectors = None):
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
     

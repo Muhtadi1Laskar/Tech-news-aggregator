@@ -1,4 +1,4 @@
-def parse_kalerkantho(json_data, name, news_type="sports"):
+def parse_kalerkantho(json_data, name, news_type, selectors = None):
     articles = []
     stories = json_data.get("category") or {}
     baseURL = f"https://www.kalerkantho.com/online/{news_type}/"
