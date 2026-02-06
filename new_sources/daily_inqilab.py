@@ -20,8 +20,7 @@ def parse_daily_inqilab(html_content, name, news_type, selectors = None):
             continue
 
         link = card["href"]
-        
-        
+
         # try:
         #     text = parse_article(name, link)
         # except Exception as e:
