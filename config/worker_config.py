@@ -65,7 +65,7 @@ site_configs = {
     },
     "The Daily Observer": {
         "max_workers": 3,  # HTML parsing might be slower
-        "delay": 2.0,
+        "delay": 2.5,
         "timeout": 30,
     },
     "Ars Technica": {
@@ -89,11 +89,6 @@ site_configs = {
         "timeout": 15,
     },
     "Wired": {
-        "max_workers": 3,  # HTML parsing might be slower
-        "delay": 2.0,
-        "timeout": 15,
-    },
-    "Somoy Tv": {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 15,

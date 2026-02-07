@@ -3,19 +3,12 @@ from new_sources import (
     amardesh,
     prothomalo,
     kalerkantho,
-    noyadigantho,
     jugantor,
-    dailysangram,
-    bonikbartha,
-    the_business_standard,
-    the_daily_star,
     the_financial_times,
-    the_daily_observer,
-    bangladesh_protidin,
-    daily_inqilab,
 )
 
 from utils.parser.rss_parser import rss_parser
+from utils.parser.html_parser import html_parser
 
 SITES = [
     {
@@ -36,7 +29,7 @@ SITES = [
     {
         "name": "Bonik Bartha (English)",
         "fetch": fetch_html,
-        "parse": bonikbartha.parse_bonikbartha,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
         "params": {
             "news_types": {
@@ -47,6 +40,13 @@ SITES = [
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "card_tag": "div[class='@container/card flex']",
+            "title_tag": "div h3 a",
+            "link_tag": "div h3 a",
+            "publish_date_tag": "div div p",
+            "base_url": "https://en.bonikbarta.com",
+        },
     },
     {
         "name": "Ars Technica",
@@ -72,7 +72,7 @@ SITES = [
     {
         "name": "The Business Standard (English)",
         "fetch": fetch_html,
-        "parse": the_business_standard.parse_the_daily_standared,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://www.tbsnews.net/{t}?page={page-1}",
         "params": {
             "news_types": {
@@ -84,11 +84,18 @@ SITES = [
             "total_pages": 3,
         },
         "language": "EN",
+        "selector": {
+            "card_tag": "h3[class='card-title']",
+            "title_tag": "a",
+            "link_tag": "a",
+            "publish_date_tag": None,
+            "base_url": "https://www.tbsnews.net"
+        },
     },
     {
         "name": "The Daily Star",
         "fetch": fetch_html,
-        "parse": the_daily_star.parse_the_daily_star,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://www.thedailystar.net/{t}?page={page-1}",
         "params": {
             "news_types": {
@@ -97,9 +104,16 @@ SITES = [
                 "sports": "sports/cricket",
                 "technology": "tech-startup",
             },
-            "total_pages": 2,
+            "total_pages": 3,
         },
         "language": "EN",
+        "selector": {
+            "card_tag": "h3[class='card-title']",
+            "title_tag": "a",
+            "link_tag": "a",
+            "publish_date_tag": None,
+            "base_url": "https://www.thedailystar.net"
+        },
     },
     {
         "name": "The Financial Times",
@@ -117,21 +131,27 @@ SITES = [
         },
         "language": "EN",
     },
-    {
-        "name": "The Daily Observer",
-        "fetch": fetch_html,
-        "parse": the_daily_observer.parse_the_daily_observer,
-        "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
-        "params": {
-            "news_types": {
-                "national": "186",
-                "international": "187",
-                "sports": "185",
-            },
-            "total_pages": 3,
-        },
-        "language": "EN",
-    },
+    # {
+    #     "name": "The Daily Observer",
+    #     "fetch": fetch_html,
+    #     "parse": html_parser,
+    #     "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "186",
+    #             "international": "187",
+    #             "sports": "185",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "EN",
+    #     "selector": {
+    #         "card_tag": "div.title_inner",
+    #         "title_tag": "a",
+    #         "link_tag": "a",
+    #         "publish_date_tag": None,
+    #     },
+    # },
     {
         "name": "Amar Desh",
         "fetch": fetch_json,
@@ -165,7 +185,7 @@ SITES = [
     {
         "name": "Daily Noya Diganta",
         "fetch": fetch_html,
-        "parse": noyadigantho.parse_dailynoyadiganta,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://dailynayadiganta.com/{t}?page={page}",
         "params": {
             "news_types": {
@@ -176,6 +196,12 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "selector": {
+            "card_tag": "article.p-4",
+            "title_tag": "div h3 a",
+            "link_tag": "div h3 a",
+            "publish_date_tag": None,
+        },
     },
     {
         "name": "Jugantor",
@@ -195,7 +221,7 @@ SITES = [
     {
         "name": "Daily Sangram",
         "fetch": fetch_html,
-        "parse": dailysangram.parse_dailysangram,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://dailysangram.com/{t}/?page={page}",
         "params": {
             "news_types": {
@@ -206,11 +232,18 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "selector": {
+            "card_tag": "article",
+            "title_tag": "div.card-content a",
+            "link_tag": "div.card-content a",
+            "publish_date_tag": None,
+            "base_url": "https://dailysangram.com"
+        },
     },
     {
         "name": "Bonik Bartha (Bangla)",
         "fetch": fetch_html,
-        "parse": bonikbartha.parse_bonikbartha,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://bonikbarta.com/{t}",
         "params": {
             "news_types": {
@@ -221,6 +254,13 @@ SITES = [
             "total_pages": 1,
         },
         "language": "BN",
+        "selector": {
+            "card_tag": "div[class='@container/card flex']",
+            "title_tag": "div h3 a",
+            "link_tag": "div h3 a",
+            "publish_date_tag": "div div p",
+            "base_url": "https://bonikbarta.com",
+        },
     },
     {
         "name": "Prothom Alo",
@@ -241,7 +281,7 @@ SITES = [
     {
         "name": "The Business Standard (Bangla)",
         "fetch": fetch_html,
-        "parse": the_business_standard.parse_the_daily_standared,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://www.tbsnews.net/bangla/{t}?page={page-1}",
         "params": {
             "news_types": {
@@ -252,11 +292,18 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "selector": {
+            "card_tag": "h3[class='card-title']",
+            "title_tag": "a",
+            "link_tag": "a",
+            "publish_date_tag": None,
+            "base_url": "https://www.tbsnews.net"
+        },
     },
     {
         "name": "Bangladesh Pratidin",
         "fetch": fetch_html,
-        "parse": bangladesh_protidin.parse_bangladesh_protindin,
+        "parse": html_parser,
         "build_url": lambda page, t: f"https://www.bd-pratidin.com/{t}/page={page}",
         "params": {
             "news_types": {
@@ -267,6 +314,12 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "selector": {
+            "card_tag": "div.col-6",
+            "title_tag": "h5",
+            "link_tag": "div a.stretched-link",
+            "publish_date_tag": None,
+        }
     },
     {
         "name": "investinglive.com",
@@ -324,21 +377,27 @@ SITES = [
             "paragraph_selector": "description",
         },
     },
-    {
-        "name": "The Daily Inquilab",
-        "fetch": fetch_html,
-        "parse": daily_inqilab.parse_daily_inqilab,
-        "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
-        "params": {
-            "news_types": {
-                "national": "national",
-                "international": "international",
-                "sports": "sports",
-            },
-            "total_pages": 3,
-        },
-        "language": "BN",
-    },
+    # {
+    #     "name": "The Daily Inquilab",
+    #     "fetch": fetch_html,
+    #     "parse": html_parser,
+    #     "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "national",
+    #             "international": "international",
+    #             "sports": "sports",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "BN",
+    #     "selector": {
+    #         "card_tag": "div.col-md-6",
+    #         "title_tag": "div p.content-heading",
+    #         "link_tag": "a",
+    #         "publish_date_tag": "div div section.news-date-time",
+    #     },
+    # },
     {
         "name": "Tech Crunch",
         "fetch": fetch_html,
