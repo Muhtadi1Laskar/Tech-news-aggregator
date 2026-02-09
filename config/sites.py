@@ -131,27 +131,27 @@ SITES = [
         },
         "language": "EN",
     },
-    # {
-    #     "name": "The Daily Observer",
-    #     "fetch": fetch_html,
-    #     "parse": html_parser,
-    #     "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "186",
-    #             "international": "187",
-    #             "sports": "185",
-    #         },
-    #         "total_pages": 3,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "card_tag": "div.title_inner",
-    #         "title_tag": "a",
-    #         "link_tag": "a",
-    #         "publish_date_tag": None,
-    #     },
-    # },
+    {
+        "name": "The Daily Observer",
+        "fetch": fetch_html,
+        "parse": html_parser,
+        "build_url": lambda page, t: f"https://www.observerbd.com/menu/{t}/{page}",
+        "params": {
+            "news_types": {
+                "national": "186",
+                "international": "187",
+                "sports": "185",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+        "selector": {
+            "card_tag": "div.title_inner",
+            "title_tag": "a",
+            "link_tag": "a",
+            "publish_date_tag": None,
+        },
+    },
     {
         "name": "Amar Desh",
         "fetch": fetch_json,
@@ -377,27 +377,27 @@ SITES = [
             "paragraph_selector": "description",
         },
     },
-    # {
-    #     "name": "The Daily Inquilab",
-    #     "fetch": fetch_html,
-    #     "parse": html_parser,
-    #     "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "national",
-    #             "international": "international",
-    #             "sports": "sports",
-    #         },
-    #         "total_pages": 3,
-    #     },
-    #     "language": "BN",
-    #     "selector": {
-    #         "card_tag": "div.col-md-6",
-    #         "title_tag": "div p.content-heading",
-    #         "link_tag": "a",
-    #         "publish_date_tag": "div div section.news-date-time",
-    #     },
-    # },
+    {
+        "name": "The Daily Inquilab",
+        "fetch": fetch_html,
+        "parse": html_parser,
+        "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 3,
+        },
+        "language": "BN",
+        "selector": {
+            "card_tag": "div.col-md-6",
+            "title_tag": "div p.content-heading",
+            "link_tag": "a",
+            "publish_date_tag": "div div section.news-date-time",
+        },
+    },
     {
         "name": "Tech Crunch",
         "fetch": fetch_html,
