@@ -377,27 +377,27 @@ SITES = [
             "paragraph_selector": "description",
         },
     },
-    {
-        "name": "The Daily Inquilab",
-        "fetch": fetch_html,
-        "parse": html_parser,
-        "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
-        "params": {
-            "news_types": {
-                "national": "national",
-                "international": "international",
-                "sports": "sports",
-            },
-            "total_pages": 3,
-        },
-        "language": "BN",
-        "selector": {
-            "card_tag": "div.col-md-6",
-            "title_tag": "div p.content-heading",
-            "link_tag": "a",
-            "publish_date_tag": "div div section.news-date-time",
-        },
-    },
+    # {
+    #     "name": "The Daily Inquilab",
+    #     "fetch": fetch_html,
+    #     "parse": html_parser,
+    #     "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "national",
+    #             "international": "international",
+    #             "sports": "sports",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "BN",
+    #     "selector": {
+    #         "card_tag": "div.col-md-6",
+    #         "title_tag": "div p.content-heading",
+    #         "link_tag": "a",
+    #         "publish_date_tag": "div div section.news-date-time",
+    #     },
+    # },
     {
         "name": "Tech Crunch",
         "fetch": fetch_html,
