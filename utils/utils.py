@@ -183,7 +183,7 @@ def clean_text(text):
     return " ".join(text.split()).strip()
 
 
-def parse_article(slug, link):
+def parse_article(slug, link): #div.mt-3 article p 
     all_papers = {
         "Amar Desh": {
             "selector": "div[class='block-full_richtext'] p",
@@ -204,6 +204,10 @@ def parse_article(slug, link):
         "The Business Standard (Bangla)": {
             "selector": "div[class='section-content margin-bottom-2'] p",
             "index": 1
+        },
+        "Bangladesh Pratidin": {
+            "selector": "div.mt-3 article p:nth-child(1)",
+            "index": 2
         }
 
     }
@@ -230,9 +234,33 @@ def parse_article(slug, link):
     return " ".join(text)
 
 
+def clean_rss_paragraph_text(html_string):
+    """
+    Extract text from HTML string by removing all HTML tags.
+    
+    Args:
+        html_string (str): Input string containing HTML
+    
+    Returns:
+        str: Clean text with all HTML tags removed
+    """
+    # Pattern to match any HTML tag including self-closing tags
+    tag_pattern = r'<[^>]+>'
+    
+    # Remove all HTML tags
+    text_only = re.sub(tag_pattern, '', html_string)
+    
+    # Clean up extra whitespace (multiple spaces/newlines/tabs)
+    # Replace multiple whitespace with single space and strip
+    text_only = re.sub(r'\s+', ' ', text_only).strip()
+    
+    return text_only
+
+
 class EmptyArticleError(Exception):
     def __init__(self, message):
         self.message = message
     
     def __str__(self):
         return f"Empty Article from {self.message}'s rss feed"
+    

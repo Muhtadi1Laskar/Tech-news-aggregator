@@ -1,4 +1,4 @@
-def parse_jugantor(json_data, name, news_type, selectors = None):
+def parse_jugantor(json_data, name, news_type, selectors = None, parseParagraph = False):
     articles = []
     stories = json_data or []
 
@@ -9,7 +9,7 @@ def parse_jugantor(json_data, name, news_type, selectors = None):
             "publish_date": story["created_at"],
             "news_type": news_type,
             "source": name,
-            # "paragraph": story.get("description", "")
+            "paragraph": story.get("description", "")
         })
     
     return articles

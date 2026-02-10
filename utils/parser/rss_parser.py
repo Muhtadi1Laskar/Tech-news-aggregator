@@ -2,10 +2,9 @@ from configparser import ParsingError
 from bs4 import BeautifulSoup
 import lxml
 
-from utils.utils import EmptyArticleError
+from utils.utils import EmptyArticleError, clean_rss_paragraph_text
 
-
-def rss_parser(html_content, name, news_type, selector={}):
+def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True):
     item_selector = selector.get("item_selector")
     title_selector = selector.get("title_selector")
     link_selector = selector.get("link_selector")
@@ -27,7 +26,9 @@ def rss_parser(html_content, name, news_type, selector={}):
             or card.find(link_selector)["href"]
         )
         publish_date = card.find(publish_date_selector).get_text(strip=True)
-        paragraph = card.find(paragraph_selector).get_text(strip=True)
+        paragraph = card.find(paragraph_selector).get_text(strip=True) if parseParagraph else None
+        cleaned_paragraph = clean_rss_paragraph_text(paragraph) if paragraph else None
+    
 
         if not title or not link:
             continue
@@ -39,7 +40,7 @@ def rss_parser(html_content, name, news_type, selector={}):
                 "publish_date": publish_date,
                 "news_type": news_type,
                 "source": name,
-                "paragraph": None,
+                "paragraph": cleaned_paragraph,
             }
         )
 

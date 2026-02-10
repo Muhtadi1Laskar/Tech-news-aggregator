@@ -25,6 +25,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "EN",
+        "parseParagraph": False
     },
     {
         "name": "Bonik Bartha (English)",
@@ -47,6 +48,7 @@ SITES = [
             "publish_date_tag": "div div p",
             "base_url": "https://en.bonikbarta.com",
         },
+        "parseParagraph": False
     },
     {
         "name": "Ars Technica",
@@ -68,6 +70,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": False
     },
     {
         "name": "The Business Standard (English)",
@@ -91,6 +94,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://www.tbsnews.net"
         },
+        "parseParagraph": False
     },
     {
         "name": "The Daily Star",
@@ -114,6 +118,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://www.thedailystar.net"
         },
+        "parseParagraph": False
     },
     {
         "name": "The Financial Times",
@@ -130,6 +135,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "EN",
+        "parseParagraph": False
     },
     {
         "name": "The Daily Observer",
@@ -151,6 +157,7 @@ SITES = [
             "link_tag": "a",
             "publish_date_tag": None,
         },
+        "parseParagraph": False
     },
     {
         "name": "Amar Desh",
@@ -166,6 +173,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "parseParagraph": True
     },
     {
         "name": "Kaler Kantho",
@@ -181,6 +189,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "parseParagraph": True
     },
     {
         "name": "Daily Noya Diganta",
@@ -202,6 +211,7 @@ SITES = [
             "link_tag": "div h3 a",
             "publish_date_tag": None,
         },
+        "parseParagraph": True
     },
     {
         "name": "Jugantor",
@@ -217,6 +227,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "parseParagraph": True
     },
     {
         "name": "Daily Sangram",
@@ -239,6 +250,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://dailysangram.com"
         },
+        "parseParagraph": True
     },
     {
         "name": "Bonik Bartha (Bangla)",
@@ -261,6 +273,7 @@ SITES = [
             "publish_date_tag": "div div p",
             "base_url": "https://bonikbarta.com",
         },
+        "parseParagraph": True
     },
     {
         "name": "Prothom Alo",
@@ -277,6 +290,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "BN",
+        "parseParagraph": True
     },
     {
         "name": "The Business Standard (Bangla)",
@@ -299,6 +313,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://www.tbsnews.net"
         },
+        "parseParagraph": True
     },
     {
         "name": "Bangladesh Pratidin",
@@ -319,7 +334,8 @@ SITES = [
             "title_tag": "h5",
             "link_tag": "div a.stretched-link",
             "publish_date_tag": None,
-        }
+        },
+        "parseParagraph": True
     },
     {
         "name": "investinglive.com",
@@ -331,6 +347,14 @@ SITES = [
             "total_pages": 1,
         },
         "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": False
     },
     {
         "name": "The Daily Ittefaq",
@@ -353,6 +377,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": True
     },
     {
         "name": "Dhaka Tribune",
@@ -376,28 +401,8 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": True
     },
-    # {
-    #     "name": "The Daily Inquilab",
-    #     "fetch": fetch_html,
-    #     "parse": html_parser,
-    #     "build_url": lambda page, t: f"https://dailyinqilab.com/{t}?page={page}",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "national",
-    #             "international": "international",
-    #             "sports": "sports",
-    #         },
-    #         "total_pages": 3,
-    #     },
-    #     "language": "BN",
-    #     "selector": {
-    #         "card_tag": "div.col-md-6",
-    #         "title_tag": "div p.content-heading",
-    #         "link_tag": "a",
-    #         "publish_date_tag": "div div section.news-date-time",
-    #     },
-    # },
     {
         "name": "Tech Crunch",
         "fetch": fetch_html,
@@ -415,6 +420,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": False
     },
     {
         "name": "Wired",
@@ -433,6 +439,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": True
     },
     {
         "name": "The Hacker News",
@@ -451,6 +458,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": False
     },
     {
         "name": "The Verge",
@@ -471,5 +479,6 @@ SITES = [
             "pub_date_selector": "published",
             "paragraph_selector": "summary",
         },
+        "parseParagraph": False
     },
 ]

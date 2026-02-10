@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from utils.utils import parse_article
 
 
-def html_parser(html_content, name, news_type, selectors = None):
+def html_parser(html_content, name, news_type, selectors = None, parseParagraph = False):
     main_card_selector = selectors.get("card_tag")
     title_tag_selector = selectors.get("title_tag")
     link_tag_selector = selectors.get("link_tag")
@@ -12,6 +12,7 @@ def html_parser(html_content, name, news_type, selectors = None):
 
     soup = BeautifulSoup(html_content, "html.parser")
     articles = []
+    text = ''
     
     article_card = soup.select(main_card_selector)
 
@@ -29,10 +30,11 @@ def html_parser(html_content, name, news_type, selectors = None):
         full_url = base_url + link_tag["href"]
         publish_date = date_time_tag.get_text(strip=True) if date_time_tag else None
 
-        # try:
-        #     text = parse_article(name, full_url)
-        # except Exception as e:
-        #     text = ""
+        if parseParagraph:
+            try:
+                text = parse_article(name, full_url)
+            except Exception as e:
+                text = ""
 
         articles.append({
             "title": title_tag.get_text(strip=True),
@@ -40,7 +42,7 @@ def html_parser(html_content, name, news_type, selectors = None):
             "publish_date": publish_date,
             "news_type": news_type,
             "source": name,
-            # "paragraph": text
+            "paragraph": text
         })
 
     return articles

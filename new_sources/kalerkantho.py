@@ -1,4 +1,4 @@
-def parse_kalerkantho(json_data, name, news_type, selectors = None):
+def parse_kalerkantho(json_data, name, news_type, selectors = None, parseParagraph = False):
     articles = []
     stories = json_data.get("category") or {}
     baseURL = f"https://www.kalerkantho.com/online/{news_type}/"
@@ -13,7 +13,7 @@ def parse_kalerkantho(json_data, name, news_type, selectors = None):
                 "publish_date": story["created_at"],
                 "news_type": news_type,
                 "source": name,
-                # "paragraph": story.get("n_details", "")
+                "paragraph": story.get("n_details", "")
             }
         )
 

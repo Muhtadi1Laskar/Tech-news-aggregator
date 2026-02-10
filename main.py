@@ -23,6 +23,7 @@ def run_site_with_rate_limit(
     language = site["language"]
     source_name = site["name"]
     selectors = site.get("selector", None)
+    parseParagraph = site.get("parseParagraph")
 
     stats = {"site_name": source_name, "successful_fetches": 0, "failed_fetches": 0}
 
@@ -68,7 +69,7 @@ def run_site_with_rate_limit(
         # Now do the actual request OUTSIDE the lock
         try:
             raw = site_info["fetch"](url)
-            articles = site_info["parse"](raw, source, key, selectors)
+            articles = site_info["parse"](raw, source, key, selectors, parseParagraph)
             return articles
         except Exception as e:
             print(f"[ERROR FETCHING] {url}: {e}")
