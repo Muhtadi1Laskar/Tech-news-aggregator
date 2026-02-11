@@ -29,7 +29,7 @@ site_configs = {
     },
     "Daily Sangram": {
         "max_workers": 3, 
-        "delay": 2.0, 
+        "delay": 2.5, 
         "timeout": 20
     },
     "Bonik Bartha (Bangla)": {

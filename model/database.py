@@ -73,6 +73,6 @@ def read_article(query, projection_fields={}):
     try:
         result = collections.find(query, projection_fields)
 
-        return result
+        return list(result)
     except Exception as e:
         print(f"Failed to read data from the database: {e}")
