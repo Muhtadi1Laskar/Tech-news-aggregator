@@ -65,7 +65,8 @@ def normalize_article(data, news_language="BN"):
         "fetchedDate": fetchedDate,
         "sortDate": sortDate,
         "dateSource": dateSource,
-        "paragraph": raw_paragraph
+        "paragraph": raw_paragraph,
+        "clusterId": None
     }
 
     return article

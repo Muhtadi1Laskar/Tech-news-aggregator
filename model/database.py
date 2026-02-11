@@ -40,6 +40,7 @@ def save_to_database(articles):
                         "category": article["category"],
                         "contentHash": article["contentHash"],
                         "lastSeenAt": article["fetchedDate"],
+                        "clusterId": article["clusterId"]
                     },
                 },
                 upsert=True,
