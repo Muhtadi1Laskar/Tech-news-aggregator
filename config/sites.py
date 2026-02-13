@@ -51,28 +51,27 @@ SITES = [
     #     },
     #     "parseParagraph": False
     # },
-    # {
-    #     "name": "Ars Technica",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://arstechnica.com/{t}/feed/",
-    #     "params": {
-    #         "news_types": {
-    #             "technology-ai": "ai",
-    #             "technology-gadets": "gadgets",
-    #         },
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": False
-    # },
+    {
+        "name": "Ars Technica",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://arstechnica.com/{t}/feed/",
+        "params": {
+            "news_types": {
+                "technology": "ai",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": True
+    },
     # {
     #     "name": "The Business Standard (English)",
     #     "fetch": fetch_html,
@@ -338,158 +337,158 @@ SITES = [
     #     },
     #     "parseParagraph": True
     # },
-    # {
-    #     "name": "investinglive.com",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://investinglive.com/feed/news",
-    #     "params": {
-    #         "news_types": {"international": "international"},
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": False
-    # },
-    # {
-    #     "name": "The Daily Ittefaq",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://www.ittefaq.com.bd/feed/{t}",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "national",
-    #             "international": "world-news",
-    #             "sports": "sports",
-    #         },
-    #         "total_pages": 1,
-    #     },
-    #     "language": "BN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": True
-    # },
-    # {
-    #     "name": "Dhaka Tribune",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://bangla.dhakatribune.com/feed/{t}",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "bangladesh",
-    #             "international": "international",
-    #             "sports": "sport",
-    #             "technology": "technology",
-    #         },
-    #         "total_pages": 1,
-    #     },
-    #     "language": "BN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": True
-    # },
-    # {
-    #     "name": "Tech Crunch",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://techcrunch.com/feed/",
-    #     "params": {
-    #         "news_types": {"technology": "technology"},
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": False
-    # },
-    # {
-    #     "name": "Wired",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://www.wired.com/feed/rss",
-    #     "params": {
-    #         "news_types": {"international": "international"},
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": True
-    # },
-    # {
-    #     "name": "The Hacker News",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://feeds.feedburner.com/TheHackersNews",
-    #     "params": {
-    #         "news_types": {"technology": "technology"},
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "item",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "pubDate",
-    #         "paragraph_selector": "description",
-    #     },
-    #     "parseParagraph": False
-    # },
-    # {
-    #     "name": "The Verge",
-    #     "fetch": fetch_html,
-    #     "parse": rss_parser,
-    #     "build_url": lambda page, t: f"https://www.theverge.com/rss/{t}/index.xml",
-    #     "params": {
-    #         "news_types": {
-    #             "technology": "tech",
-    #         },
-    #         "total_pages": 1,
-    #     },
-    #     "language": "EN",
-    #     "selector": {
-    #         "item_selector": "entry",
-    #         "title_selector": "title",
-    #         "link_selector": "link",
-    #         "pub_date_selector": "published",
-    #         "paragraph_selector": "summary",
-    #     },
-    #     "parseParagraph": False
-    # },
     {
-        "name": "Jagonews24",
+        "name": "investinglive.com",
         "fetch": fetch_html,
-        "parse": jagonews24.jagonew24_parser,
-        "build_url": lambda page, t: f"https://www.jagonews24.com/rss/rss.xml",
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://investinglive.com/feed/news",
+        "params": {
+            "news_types": {"international": "international"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": False
+    },
+    {
+        "name": "The Daily Ittefaq",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.ittefaq.com.bd/feed/{t}",
         "params": {
             "news_types": {
                 "national": "national",
+                "international": "world-news",
+                "sports": "sports",
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": True
+    },
+    {
+        "name": "Dhaka Tribune",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://bangla.dhakatribune.com/feed/{t}",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sport",
+                "technology": "technology",
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": True
+    },
+    {
+        "name": "Tech Crunch",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://techcrunch.com/feed/",
+        "params": {
+            "news_types": {"technology": "technology"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": False
+    },
+    {
+        "name": "Wired",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.wired.com/feed/rss",
+        "params": {
+            "news_types": {"international": "international"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": True
+    },
+    {
+        "name": "The Hacker News",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://feeds.feedburner.com/TheHackersNews",
+        "params": {
+            "news_types": {"technology": "technology"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": False
+    },
+    {
+        "name": "The Verge",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.theverge.com/rss/{t}/index.xml",
+        "params": {
+            "news_types": {
+                "technology": "tech",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "entry",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "published",
+            "paragraph_selector": "summary",
+        },
+        "parseParagraph": False
+    },
+    {
+        "name": "Jagonews24",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.jagonews24.com/rss/rss.xml",
+        "params": {
+            "news_types": {
+                "extract_from_url": None
             },
             "total_pages": 1,
         },
@@ -502,5 +501,24 @@ SITES = [
             "paragraph_selector": "description",
         },
         "parseParagraph": True
+    },
+     {
+        "name": "bd24live",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.bd24live.com/bangla/feed/",
+        "params": {
+            "news_types": {"national": "national"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": False
     },
 ]

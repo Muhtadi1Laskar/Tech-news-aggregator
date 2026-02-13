@@ -4,6 +4,20 @@ import lxml
 
 from utils.utils import EmptyArticleError, clean_rss_paragraph_text
 
+def check_news_category(url):
+    category_mapping = {
+        'national': 'national',
+        'country': 'national',
+        'politics': 'national',
+        'international': 'international',
+        'sports': 'sports'
+    }
+    
+    for part in url.split('/'):
+        part_lower = part.lower()
+        if part_lower in category_mapping:
+            return category_mapping[part_lower]
+
 def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True):
     item_selector = selector.get("item_selector")
     title_selector = selector.get("title_selector")
@@ -33,12 +47,18 @@ def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True
         if not title or not link:
             continue
 
+        extracted_news_type = check_news_category(link) if news_type == "extract_from_url" else news_type
+
+        if extracted_news_type == None:
+            continue
+
+
         articles.append(
             {
                 "title": title,
                 "link": link,
                 "publish_date": publish_date,
-                "news_type": news_type,
+                "news_type": extracted_news_type,
                 "source": name,
                 "paragraph": cleaned_paragraph,
             }
