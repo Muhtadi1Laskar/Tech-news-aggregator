@@ -9,6 +9,8 @@ def check_news_category(url):
         'national': 'national',
         'country': 'national',
         'politics': 'national',
+        'bangladesh': 'national',
+        'sodesh': 'national',
         'international': 'international',
         'sports': 'sports'
     }
@@ -67,6 +69,7 @@ def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True
     if len(articles) == 0:
         raise EmptyArticleError(name)
 
-    total_articles_index = len(articles) // 2 if len(articles) > 50 else len(articles)
+    # total_articles_index = len(articles) // 2 if len(articles) > 50 else len(articles)
 
-    return articles[:total_articles_index]
+    # return articles[:total_articles_index]
+    return articles
