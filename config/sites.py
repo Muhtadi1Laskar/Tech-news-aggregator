@@ -5,6 +5,7 @@ from new_sources import (
     kalerkantho,
     jugantor,
     the_financial_times,
+    jagonews24
 )
 
 from utils.parser.rss_parser import rss_parser
@@ -175,22 +176,22 @@ SITES = [
     #     "language": "BN",
     #     "parseParagraph": True
     # },
-    {
-        "name": "Kaler Kantho",
-        "fetch": fetch_json,
-        "parse": kalerkantho.parse_kalerkantho,
-        "build_url": lambda page, t: f"https://bn.api-kalerkantho.com/api/online/{t}?page={page}",
-        "params": {
-            "news_types": {
-                "national": "national",
-                "international": "world",
-                "sports": "sport",
-            },
-            "total_pages": 3,
-        },
-        "language": "BN",
-        "parseParagraph": True
-    },
+    # {
+    #     "name": "Kaler Kantho",
+    #     "fetch": fetch_json,
+    #     "parse": kalerkantho.parse_kalerkantho,
+    #     "build_url": lambda page, t: f"https://bn.api-kalerkantho.com/api/online/{t}?page={page}",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "national",
+    #             "international": "world",
+    #             "sports": "sport",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "BN",
+    #     "parseParagraph": True
+    # },
     # {
     #     "name": "Daily Noya Diganta",
     #     "fetch": fetch_html,
@@ -229,29 +230,29 @@ SITES = [
     #     "language": "BN",
     #     "parseParagraph": True
     # },
-    {
-        "name": "Daily Sangram",
-        "fetch": fetch_html,
-        "parse": html_parser,
-        "build_url": lambda page, t: f"https://dailysangram.com/{t}/?page={page}",
-        "params": {
-            "news_types": {
-                "national": "bangladesh",
-                "international": "international",
-                "sports": "sports",
-            },
-            "total_pages": 3,
-        },
-        "language": "BN",
-        "selector": {
-            "card_tag": "article",
-            "title_tag": "div.card-content a",
-            "link_tag": "div.card-content a",
-            "publish_date_tag": None,
-            "base_url": "https://dailysangram.com"
-        },
-        "parseParagraph": True
-    },
+    # {
+    #     "name": "Daily Sangram",
+    #     "fetch": fetch_html,
+    #     "parse": html_parser,
+    #     "build_url": lambda page, t: f"https://dailysangram.com/{t}/?page={page}",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "bangladesh",
+    #             "international": "international",
+    #             "sports": "sports",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "BN",
+    #     "selector": {
+    #         "card_tag": "article",
+    #         "title_tag": "div.card-content a",
+    #         "link_tag": "div.card-content a",
+    #         "publish_date_tag": None,
+    #         "base_url": "https://dailysangram.com"
+    #     },
+    #     "parseParagraph": True
+    # },
     # {
     #     "name": "Bonik Bartha (Bangla)",
     #     "fetch": fetch_html,
@@ -481,4 +482,25 @@ SITES = [
     #     },
     #     "parseParagraph": False
     # },
+    {
+        "name": "Jagonews24",
+        "fetch": fetch_html,
+        "parse": jagonews24.jagonew24_parser,
+        "build_url": lambda page, t: f"https://www.jagonews24.com/rss/rss.xml",
+        "params": {
+            "news_types": {
+                "national": "national",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": True
+    },
 ]
