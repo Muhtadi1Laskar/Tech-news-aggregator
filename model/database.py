@@ -33,14 +33,14 @@ def save_to_database(articles):
                         "source": article["source"],
                         "language": article["language"],
                         "dateSource": article["dateSource"],
-                        "paragraph": article["paragraph"],
+                        "clusterId": article["clusterId"]
                     },
                     "$set": {
                         "title": article["title"],
                         "category": article["category"],
                         "contentHash": article["contentHash"],
                         "lastSeenAt": article["fetchedDate"],
-                        "clusterId": article["clusterId"]
+                        "paragraph": article["paragraph"],
                     },
                 },
                 upsert=True,

@@ -14,7 +14,8 @@ site_configs = {
     "Kaler Kantho": {
         "max_workers": 4, 
         "delay": 2.0, 
-        "timeout": 25
+        "timeout": 25,
+        "retries": 2,
     },
     "Daily Noya Diganta": {
         "max_workers": 3,  # HTML parsing might be slower
