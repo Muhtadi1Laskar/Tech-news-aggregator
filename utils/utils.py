@@ -187,18 +187,18 @@ def parse_article(slug, link): #div.mt-3 article p
     all_papers = {
         "Amar Desh": {
             "selector": "div[class='block-full_richtext'] p",
-            "index": 3
+            "index": 5
         },
         "Daily Noya Diganta": {
             "selector": "div[class='post-body'] div p",
-            "index": 4
+            "index": 5
         },
         "Daily Sangram": {
             "selector": "div[class='post-content'] div div p",
-            "index": 3
+            "index": 5
         },
         "Bonik Bartha (Bangla)": {
-            "selector": "div[id='below-summary'] + p",
+            "selector": "div[class='post-body']  div ",
             "index": 1
         },
         "The Business Standard (Bangla)": {
@@ -206,7 +206,7 @@ def parse_article(slug, link): #div.mt-3 article p
             "index": 1
         },
         "Bangladesh Pratidin": {
-            "selector": "div.mt-3 article p:nth-child(1)",
+            "selector": "div.mt-3 article",
             "index": 2
         }
 
@@ -228,7 +228,8 @@ def parse_article(slug, link): #div.mt-3 article p
     if not article_body:
         raise ParsingError("The article layout changed")
     
-    first_few_lines = article_body[0:total_sentence] # Selecting the text of the first 3 paragraph
+    # first_few_lines = article_body[0:total_sentence] # Selecting the text of the first 3 paragraph
+    first_few_lines = article_body
     text = [clean_text(p.get_text(strip=True)) for p in first_few_lines]
 
     return " ".join(text)
@@ -263,4 +264,3 @@ class EmptyArticleError(Exception):
     
     def __str__(self):
         return f"Empty Article from {self.message}'s rss feed"
-    
