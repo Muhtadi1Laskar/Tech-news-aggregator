@@ -1,5 +1,6 @@
 import requests
 import time
+import random
 
 
 session = requests.Session()
@@ -38,7 +39,7 @@ def fetch_json(url):
     return None
 
 
-def fetch_function(url, timeout=15):
+def fetch_function(url, timeout=30):
     try:
         response = session.get(url, timeout=timeout)
         response.raise_for_status()
@@ -52,3 +53,27 @@ def fetch_function(url, timeout=15):
     except requests.exceptions.RequestException as req_err:
         print(f"Requests error occured: {req_err}")
     return None
+
+
+# def fetch_function(url, timeout=25, retries=3):
+#     for attempt in range(retries):
+#         try:
+#             response = session.get(
+#                 url,
+#                 timeout=(5, timeout)  # 5s connect, rest read
+#             )
+#             response.raise_for_status()
+#             return response
+
+#         except requests.exceptions.Timeout as e:
+#             print(f"[Timeout] Attempt {attempt+1}: {url}")
+
+#         except requests.exceptions.RequestException as e:
+#             print(f"[Request Error] Attempt {attempt+1}: {url} → {e}")
+
+#         # exponential backoff
+#         sleep_time = 2 ** attempt + random.uniform(0.5, 1.5)
+#         time.sleep(sleep_time)
+
+#     return None
+

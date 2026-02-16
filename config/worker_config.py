@@ -29,7 +29,7 @@ site_configs = {
         "retries": 3,
     },
     "Daily Sangram": {
-        "max_workers": 3, 
+        "max_workers": 2, 
         "delay": 2.5, 
         "timeout": 20
     },
