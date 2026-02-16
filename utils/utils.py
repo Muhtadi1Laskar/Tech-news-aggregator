@@ -208,8 +208,11 @@ def parse_article(slug, link): #div.mt-3 article p
         "Bangladesh Pratidin": {
             "selector": "div.mt-3 article",
             "index": 2
+        },
+        "The New Age": {
+            "selector": "div.post-content p",
+            "index": 2
         }
-
     }
 
     paper = all_papers.get(slug, "")

@@ -93,5 +93,10 @@ site_configs = {
         "max_workers": 3,  # HTML parsing might be slower
         "delay": 2.0,
         "timeout": 15,
-    }
+    },
+    "The New Age": {
+        "max_workers": 2,  # HTML parsing might be slower
+        "delay": 2.5,
+        "timeout": 20,
+    },
 }
