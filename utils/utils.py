@@ -216,6 +216,10 @@ def parse_article(slug, link): #div.mt-3 article p
         "The Bangladesh Today": {
             "selector": "div.pf-content p",
             "index": 2
+        },
+        "Bangladesh Post": {
+            "selector": "div.post-details-content p",
+            "index": 2
         }
     }
 

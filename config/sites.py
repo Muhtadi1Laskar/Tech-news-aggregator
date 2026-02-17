@@ -663,7 +663,30 @@ SITES = [
             },
             "total_pages": 3,
         },
+        "language": "BN",
+        "parseParagraph": True
+    },
+    {
+        "name": "Bangladesh Post",
+        "fetch": fetch_html,
+        "parse": html_parser,
+        "build_url": lambda page, t: f"https://bangladeshpost.net/categories/{t}?page={page}", 
+        "params": {
+            "news_types": {
+                "national": "national",
+                "international": "world",
+                "sports": "sports",
+            },
+            "total_pages": 3,
+        },
         "language": "EN",
+        "selector": {
+            "card_tag": "div.row div",
+            "title_tag": "a h4",
+            "link_tag": "a",
+            "publish_date_tag": None,
+            "base_url": "https://bangladeshpost.net"
+        },
         "parseParagraph": True
     },
 ]
