@@ -12,22 +12,22 @@ from utils.parser.rss_parser import rss_parser
 from utils.parser.html_parser import html_parser
 
 SITES = [
-    # {
-    #     "name": "Prothom Alo (English)",
-    #     "fetch": fetch_json,
-    #     "parse": prothomalo.parse_prothomalo,
-    #     "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
-    #     "params": {
-    #         "news_types": {
-    #             "national": "bangladesh",
-    #             "international": "international",
-    #             "sports": "sports",
-    #         },
-    #         "total_pages": 3,
-    #     },
-    #     "language": "EN",
-    #     "parseParagraph": True
-    # },
+    {
+        "name": "Prothom Alo (English)",
+        "fetch": fetch_json,
+        "parse": prothomalo.parse_prothomalo,
+        "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
+        "params": {
+            "news_types": {
+                "national": "bangladesh",
+                "international": "international",
+                "sports": "sports",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+        "parseParagraph": True
+    },
     {
         "name": "Bonik Bartha (English)",
         "fetch": fetch_html,
@@ -354,7 +354,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "The Daily Ittefaq",
@@ -420,7 +420,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "Wired",
@@ -458,7 +458,7 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "The Verge",
@@ -477,9 +477,9 @@ SITES = [
             "title_selector": "title",
             "link_selector": "link",
             "pub_date_selector": "published",
-            "paragraph_selector": "summary",
+            "paragraph_selector": "content",
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "Jagonews24",
