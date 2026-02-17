@@ -220,6 +220,22 @@ def parse_article(slug, link): #div.mt-3 article p
         "Bangladesh Post": {
             "selector": "div.post-details-content p",
             "index": 2
+        },
+        "Bonik Bartha (English)": {
+            "selector": "div[class='post-body']  div ",
+            "index": 2
+        },
+        "The Business Standard (English)": {
+            "selector": "div[class='section-content clearfix margin-bottom-2'] p",
+            "index": 2
+        },
+        "The Daily Star": {
+            "selector": "span[class='clearfix text-formatted'] p",
+            "index": 2
+        },
+        "The Financial Times": {
+            "selector": "article[id='main-single-post'] p",
+            "index": 2
         }
     }
 

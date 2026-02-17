@@ -12,22 +12,22 @@ from utils.parser.rss_parser import rss_parser
 from utils.parser.html_parser import html_parser
 
 SITES = [
-    {
-        "name": "Prothom Alo (English)",
-        "fetch": fetch_json,
-        "parse": prothomalo.parse_prothomalo,
-        "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
-        "params": {
-            "news_types": {
-                "national": "bangladesh",
-                "international": "international",
-                "sports": "sports",
-            },
-            "total_pages": 3,
-        },
-        "language": "EN",
-        "parseParagraph": False
-    },
+    # {
+    #     "name": "Prothom Alo (English)",
+    #     "fetch": fetch_json,
+    #     "parse": prothomalo.parse_prothomalo,
+    #     "build_url": lambda page, t: f"https://en.prothomalo.com/api/v1/collections/{t}?offset={(page*10)}&limit=10",
+    #     "params": {
+    #         "news_types": {
+    #             "national": "bangladesh",
+    #             "international": "international",
+    #             "sports": "sports",
+    #         },
+    #         "total_pages": 3,
+    #     },
+    #     "language": "EN",
+    #     "parseParagraph": True
+    # },
     {
         "name": "Bonik Bartha (English)",
         "fetch": fetch_html,
@@ -49,7 +49,7 @@ SITES = [
             "publish_date_tag": "div div p",
             "base_url": "https://en.bonikbarta.com",
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "Ars Technica",
@@ -94,7 +94,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://www.tbsnews.net"
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "The Daily Star",
@@ -118,7 +118,7 @@ SITES = [
             "publish_date_tag": None,
             "base_url": "https://www.thedailystar.net"
         },
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "The Financial Times",
@@ -135,7 +135,7 @@ SITES = [
             "total_pages": 3,
         },
         "language": "EN",
-        "parseParagraph": False
+        "parseParagraph": True
     },
     {
         "name": "The Daily Observer",
