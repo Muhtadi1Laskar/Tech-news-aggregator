@@ -99,4 +99,20 @@ site_configs = {
         "delay": 2.5,
         "timeout": 20,
     },
+    "The New Nation": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
+    },
+    "The New Nation (Bangla)": {
+        "max_workers": 3,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
+    },
+    "The Daily Times Of Bangladesh": {
+        "max_workers": 2,  # HTML parsing might be slower
+        "delay": 2.0,
+        "timeout": 15,
+    },
 }
+

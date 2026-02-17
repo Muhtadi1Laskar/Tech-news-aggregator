@@ -44,7 +44,7 @@ def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True
         publish_date = card.find(publish_date_selector).get_text(strip=True)
         paragraph = card.find(paragraph_selector).get_text(strip=True) if parseParagraph else None
         cleaned_paragraph = clean_rss_paragraph_text(paragraph) if paragraph else None
-    
+
 
         if not title or not link:
             continue
@@ -69,7 +69,4 @@ def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True
     if len(articles) == 0:
         raise EmptyArticleError(name)
 
-    # total_articles_index = len(articles) // 2 if len(articles) > 50 else len(articles)
-
-    # return articles[:total_articles_index]
     return articles
