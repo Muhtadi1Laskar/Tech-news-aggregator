@@ -1,11 +1,11 @@
 from fetch import fetch_html, fetch_json
 from new_sources import (
     amardesh,
+    dhakamail,
     prothomalo,
     kalerkantho,
     jugantor,
-    the_financial_times,
-    thedailysun
+    the_financial_times
 )
 
 from utils.parser.rss_parser import rss_parser
@@ -650,6 +650,20 @@ SITES = [
         },
         "parseParagraph": True
     },
+    {
+        "name": "Dhaka Mail",
+        "fetch": fetch_json,
+        "parse": dhakamail.parse_dhaka_mail,
+        "build_url": lambda page, t: f"https://api.dhakamail.com/api/category/view/{t}/stories?page={page}&size=10",
+        "params": {
+            "news_types": {
+                "national": 1,
+                "international": 4,
+                "sports": 7,
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+        "parseParagraph": True
+    },
 ]
-
-# 
