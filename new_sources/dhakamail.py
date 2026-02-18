@@ -10,6 +10,7 @@ def parse_dhaka_mail(json_data, name, news_type, selectors = None, parseParagrap
 
     for story in stories:
         full_url = story["canonicalUrl"]
+        text = story["subtitle"] if parseParagraph else ""
 
         articles.append({
             "title": story["mainTitle"],
@@ -17,7 +18,7 @@ def parse_dhaka_mail(json_data, name, news_type, selectors = None, parseParagrap
             "publish_date": story["datePublished"],
             "news_type": news_type,
             "source": name,
-            "paragraph": story["subtitle"]
+            "paragraph": text
         })
     
     return articles

@@ -4,15 +4,16 @@ def parse_the_financial_times(json_data, name, news_type, selectors = None, pars
     articles = []
     stories = json_data.get("items") or json_data.get("posts")
     baseURL = f"https://thefinancialexpress.com.bd"
+    text = ''
 
     for story in stories:
         full_url = baseURL + story["slug"]
 
-
-        try:
-            text = parse_article(name, full_url)
-        except Exception as e:
-            text = None
+        if parseParagraph:
+            try:
+                text = parse_article(name, full_url)
+            except Exception as e:
+                text = None
 
         articles.append({
             "title": story["title"],

@@ -5,7 +5,8 @@ def parse_kalerkantho(json_data, name, news_type, selectors = None, parseParagra
 
     for story in stories["data"] or []:
         full_url = baseURL + f"{story["f_date"]}/{story["n_id"]}"
-
+        text = story.get("n_details", "") if parseParagraph else ""
+            
         articles.append(
             {
                 "title": story["n_head"],
@@ -13,7 +14,7 @@ def parse_kalerkantho(json_data, name, news_type, selectors = None, parseParagra
                 "publish_date": story["created_at"],
                 "news_type": news_type,
                 "source": name,
-                "paragraph": story.get("n_details", "")
+                "paragraph": text
             }
         )
 

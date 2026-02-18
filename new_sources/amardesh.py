@@ -7,14 +7,16 @@ def parse_amardesh(json_data, name, news_type, selectors = None, parseParagraph 
     articles = []
     stories = json_data.get("stories") or []
     baseURL = f"https://www.dailyamardesh.com/{news_type}/"
+    text = ''
 
     for story in stories:
         full_url = baseURL + story["news_slug"]
 
-        try:
-            text = parse_article(name, full_url)
-        except Exception as e:
-            text = None
+        if parseParagraph:
+            try:
+                text = parse_article(name, full_url)
+            except Exception as e:
+                text = None
 
         articles.append({
             "title": story["title"],
