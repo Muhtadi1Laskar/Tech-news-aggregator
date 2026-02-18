@@ -10,6 +10,11 @@ def check_news_category(url):
         'country': 'national',
         'politics': 'national',
         'bangladesh': 'national',
+        'crime': 'national',
+        'education': 'national',
+        'religion': 'national',
+        'district-news': 'national',
+        'social-media': 'national',
         'sodesh': 'national',
         'international': 'international',
         'sports': 'sports'
