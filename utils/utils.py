@@ -236,6 +236,10 @@ def parse_article(slug, link): #div.mt-3 article p
         "The Financial Times": {
             "selector": "article[id='main-single-post'] p",
             "index": 2
+        }, 
+        "Boishakhi Online": {
+            "selector": "div.dtl_content_section p",
+            "index": 2
         }
     }
 
