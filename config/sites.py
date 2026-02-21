@@ -762,4 +762,25 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph,
     },
+    {
+        "name": "The Register",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.theregister.com/headlines.atom",
+        "params": {
+            "news_types": {
+                "technology": "ai",
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "entry",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "published",
+            "paragraph_selector": "summary",
+        },
+        "parseParagraph": should_parse_paragraph
+    },
 ]
