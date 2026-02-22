@@ -529,25 +529,25 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph
     },
-    {
-        "name": "Amar Bangla BD",
-        "fetch": fetch_html,
-        "parse": rss_parser,
-        "build_url": lambda page, t: f"https://www.amarbanglabd.com/feeds",
-        "params": {
-            "news_types": {"extract_from_url": None},
-            "total_pages": 1,
-        },
-        "language": "BN",
-        "selector": {
-            "item_selector": "entry",
-            "title_selector": "title",
-            "link_selector": "link",
-            "pub_date_selector": "updated",
-            "paragraph_selector": "summary",
-        },
-        "parseParagraph": should_parse_paragraph
-    },
+    # {
+    #     "name": "Amar Bangla BD",
+    #     "fetch": fetch_html,
+    #     "parse": rss_parser,
+    #     "build_url": lambda page, t: f"https://www.amarbanglabd.com/feeds",
+    #     "params": {
+    #         "news_types": {"extract_from_url": None},
+    #         "total_pages": 1,
+    #     },
+    #     "language": "BN",
+    #     "selector": {
+    #         "item_selector": "entry",
+    #         "title_selector": "title",
+    #         "link_selector": "link",
+    #         "pub_date_selector": "updated",
+    #         "paragraph_selector": "summary",
+    #     },
+    #     "parseParagraph": should_parse_paragraph
+    # },
     {
         "name": "Risingbd.com",
         "fetch": fetch_html,
@@ -686,7 +686,7 @@ SITES = [
                 "international": "world",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {

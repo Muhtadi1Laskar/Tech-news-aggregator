@@ -55,7 +55,7 @@ def fetch_json(url):
 #     return None
 
 
-def fetch_function(url, timeout=25, retries=3):
+def fetch_function(url, timeout=25, retries=5):
     for attempt in range(retries):
         try:
             response = session.get(
