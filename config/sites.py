@@ -35,14 +35,14 @@ SITES = [
         "name": "Bonik Bartha (English)",
         "fetch": fetch_html,
         "parse": html_parser,
-        "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}",
+        "build_url": lambda page, t: f"https://en.bonikbarta.com/{t}?page={page}",
         "params": {
             "news_types": {
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 1,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -263,14 +263,14 @@ SITES = [
         "name": "Bonik Bartha (Bangla)",
         "fetch": fetch_html,
         "parse": html_parser,
-        "build_url": lambda page, t: f"https://bonikbarta.com/{t}",
+        "build_url": lambda page, t: f"https://bonikbarta.com/{t}?page={page}",
         "params": {
             "news_types": {
                 "national": "bangladesh",
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 1,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
