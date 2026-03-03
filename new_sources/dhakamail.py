@@ -5,7 +5,7 @@ from utils.utils import parse_article
 
 def parse_dhaka_mail(json_data, name, news_type, selectors = None, parseParagraph = False):
     articles = []
-    stories = json_data.get("model", []);
+    stories = json_data.get("model", [])
     base_url = f"https://www.banglanews24.com/{news_type}/news/bd/"
 
     for story in stories:

@@ -6,6 +6,7 @@ from new_sources import (
     kalerkantho,
     jugantor,
     the_financial_times,
+    bbc_news
 )
 
 from utils.parser.rss_parser import rss_parser
@@ -823,6 +824,21 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
+        "parseParagraph": should_parse_paragraph
+    },
+     {
+        "name": "BBC News",
+        "fetch": fetch_json,
+        "parse": bbc_news.parse_bbc_news,
+        "build_url": lambda page, t: f"https://web-cdn.api.bbci.co.uk/xd/content-collection/b08a1d2f-6911-4738-825a-767895b8bfc4?country=bd&page={page-1}&size=9&path=%2Fnews%2Fworld%2Fmiddle_east",
+        "params": {
+            "news_types": {
+                "international": "international",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+        "selector": {},
         "parseParagraph": should_parse_paragraph
     },
 ]
