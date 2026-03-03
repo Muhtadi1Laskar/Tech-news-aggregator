@@ -6,7 +6,7 @@ from new_sources import (
     kalerkantho,
     jugantor,
     the_financial_times,
-    bbc_news
+    bbc_news,
 )
 
 from utils.parser.rss_parser import rss_parser
@@ -805,15 +805,13 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph
     },
-       {
+    {
         "name": "Al Jazeera",
         "fetch": fetch_html,
         "parse": rss_parser,
         "build_url": lambda page, t: f"https://www.aljazeera.com/xml/rss/all.xml",
         "params": {
-            "news_types": {
-                "international": "international"
-            },
+            "news_types": {"international": "international"},
             "total_pages": 1,
         },
         "language": "EN",
@@ -824,9 +822,9 @@ SITES = [
             "pub_date_selector": "pubDate",
             "paragraph_selector": "description",
         },
-        "parseParagraph": should_parse_paragraph
+        "parseParagraph": should_parse_paragraph,
     },
-     {
+    {
         "name": "BBC News",
         "fetch": fetch_json,
         "parse": bbc_news.parse_bbc_news,
@@ -839,6 +837,25 @@ SITES = [
         },
         "language": "EN",
         "selector": {},
-        "parseParagraph": should_parse_paragraph
+        "parseParagraph": should_parse_paragraph,
+    },
+    {
+        "name": "TRT World",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.trtworld.com/feed/rss.xml",
+        "params": {
+            "news_types": {"international": "international"},
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
     },
 ]

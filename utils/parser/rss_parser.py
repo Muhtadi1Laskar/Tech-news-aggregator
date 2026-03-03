@@ -59,6 +59,9 @@ def rss_parser(html_content, name, news_type, selector={}, parseParagraph = True
         if extracted_news_type == None:
             continue
 
+        if name == "TRT World":
+            link = "https://www.trtworld.com" + link
+
 
         articles.append(
             {
