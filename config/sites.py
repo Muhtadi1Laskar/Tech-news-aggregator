@@ -921,4 +921,25 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph
     },
+     {
+        "name": "Gizmodo",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://gizmodo.com/feed",
+        "params": {
+            "news_types": {
+                "technology": "technology"
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph
+    },
 ]
