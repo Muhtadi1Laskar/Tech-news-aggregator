@@ -858,4 +858,25 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph,
     },
+    {
+        "name": "Middle East Eye",
+        "fetch": fetch_html,
+        "parse": html_parser,
+        "build_url": lambda page, t: f"https://www.middleeasteye.net/news?page={page-1}",
+        "params": {
+            "news_types": {
+                "international": "international",
+            },
+            "total_pages": 3,
+        },
+        "language": "EN",
+        "selector": {
+            "card_tag": "div.mee-article-tile.mee-article-tile-type--story.mee-article-tile-image",
+            "title_tag": "div.mee-tile-main a.mee-tile-title",
+            "link_tag": "div.mee-tile-main a.mee-tile-title",
+            "publish_date_tag": None,
+            "base_url": "https://www.middleeasteye.net/"
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
 ]

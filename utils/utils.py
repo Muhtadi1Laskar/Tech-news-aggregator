@@ -240,6 +240,10 @@ def parse_article(slug, link): #div.mt-3 article p
         "Boishakhi Online": {
             "selector": "div.dtl_content_section p",
             "index": 2
+        },
+        "Middle East Eye": {
+            "selector": "article.story.full.article-type.clearfix p",
+            "index": 2
         }
     }
 
