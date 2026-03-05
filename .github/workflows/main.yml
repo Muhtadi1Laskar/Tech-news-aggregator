@@ -39,7 +39,7 @@ jobs:
       # 4. Run Scraper with Secrets
       - name: Run News Scraper
         env:
-          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL_PROD }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
           DATABASE_COLLECTION: ${{ secrets.DATABASE_COLLECTION }}
         run: |
