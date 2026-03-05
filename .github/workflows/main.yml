@@ -39,10 +39,9 @@ jobs:
       # 4. Run Scraper with Secrets
       - name: Run News Scraper
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL }}
           DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-          COLLECTION_NAME: ${{ secrets.COLLECTION_NAME }}
-          CLUSTER_COLLECTION_NAME: ${{ secrets.CLUSTER_COLLECTION_NAME }}
+          DATABASE_COLLECTION: ${{ secrets.DATABASE_COLLECTION }}
         run: |
           echo "🚀 Starting scraper at $(date)"
           python main.py
