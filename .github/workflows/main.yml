@@ -45,7 +45,7 @@ jobs:
           CLUSTER_COLLECTION_NAME: ${{ secrets.CLUSTER_COLLECTION_NAME }}
         run: |
           echo "🚀 Starting scraper at $(date)"
-          python src/scraper/main.py
+          python main.py
           echo "✅ Scraper finished at $(date)"
 
       # 5. Error Notification (Optional)
