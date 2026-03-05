@@ -10,6 +10,7 @@ def check_news_category(url):
         'country': 'national',
         'politics': 'national',
         'bangladesh': 'national',
+        'whole-country': 'national',
         'crime': 'national',
         'education': 'national',
         'religion': 'national',
@@ -17,7 +18,7 @@ def check_news_category(url):
         'social-media': 'national',
         'sodesh': 'national',
         'international': 'international',
-        'sports': 'sports'
+        'sports': 'sports',
     }
     
     for part in url.split('/'):
