@@ -980,13 +980,34 @@ SITES = [
     #     },
     #     "parseParagraph": should_parse_paragraph,
     # },
+    # {
+    #     "name": "Samakal",
+    #     "fetch": fetch_html,
+    #     "parse": rss_parser,
+    #     "build_url": lambda page, t: f"http://samakal.com/rss",
+    #     "params": {
+    #         "news_types": {"extract_from_url": None},
+    #         "total_pages": 1,
+    #     },
+    #     "language": "EN",
+    #     "selector": {
+    #         "item_selector": "item",
+    #         "title_selector": "title",
+    #         "link_selector": "link",
+    #         "pub_date_selector": "pubDate",
+    #         "paragraph_selector": "description",
+    #     },
+    #     "parseParagraph": should_parse_paragraph,
+    # },
     {
-        "name": "Samakal",
+        "name": "The Good Morning",
         "fetch": fetch_html,
         "parse": rss_parser,
-        "build_url": lambda page, t: f"http://samakal.com/rss",
+        "build_url": lambda page, t: f"https://thegoodmorning.net/feed",
         "params": {
-            "news_types": {"extract_from_url": None},
+            "news_types": {
+                "national": "national"
+            },
             "total_pages": 1,
         },
         "language": "EN",
