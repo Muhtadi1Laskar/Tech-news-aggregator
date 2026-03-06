@@ -8,7 +8,6 @@ from new_sources import (
     the_financial_times,
     bbc_news,
 )
-
 from utils.parser.rss_parser import rss_parser
 from utils.parser.html_parser import html_parser
 
@@ -1043,7 +1042,5 @@ SITES = [
             "paragraph_selector": "description",
         },
         "parseParagraph": should_parse_paragraph,
-    },
+    }
 ]
-
-
