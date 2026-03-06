@@ -1043,4 +1043,28 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph,
     },
+    {
+        "name": "Bangla Tribune",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.banglatribune.com/feed/{t}",
+        "params": {
+            "news_types": {
+                "national": "country",
+                "international": "foreign",
+                "sports": "sport"
+
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
 ]
