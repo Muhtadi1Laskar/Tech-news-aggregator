@@ -763,6 +763,94 @@ SITES = [
         "parseParagraph": should_parse_paragraph,
     },
     {
+        "name": "Samakal",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"http://samakal.com/rss",
+        "params": {
+            "news_types": {"extract_from_url": None},
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
+    {
+        "name": "The Good Morning",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://thegoodmorning.net/feed",
+        "params": {
+            "news_types": {
+                "national": "national"
+            },
+            "total_pages": 1,
+        },
+        "language": "EN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
+    {
+        "name": "khaborwala",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://bn.khaborwala.com/category/{t}/feed/",
+        "params": {
+            "news_types": {
+                "national": "জাতীয়",
+                "international": "আন্তর্জাতিক",
+                "sports": "খেলা",
+
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
+    {
+        "name": "Bangla Tribune",
+        "fetch": fetch_html,
+        "parse": rss_parser,
+        "build_url": lambda page, t: f"https://www.banglatribune.com/feed/{t}",
+        "params": {
+            "news_types": {
+                "national": "country",
+                "international": "foreign",
+                "sports": "sport"
+
+            },
+            "total_pages": 1,
+        },
+        "language": "BN",
+        "selector": {
+            "item_selector": "item",
+            "title_selector": "title",
+            "link_selector": "link",
+            "pub_date_selector": "pubDate",
+            "paragraph_selector": "description",
+        },
+        "parseParagraph": should_parse_paragraph,
+    },
+    {
         "name": "The Register",
         "fetch": fetch_html,
         "parse": rss_parser,
@@ -979,92 +1067,5 @@ SITES = [
         },
         "parseParagraph": should_parse_paragraph,
     },
-    {
-        "name": "Samakal",
-        "fetch": fetch_html,
-        "parse": rss_parser,
-        "build_url": lambda page, t: f"http://samakal.com/rss",
-        "params": {
-            "news_types": {"extract_from_url": None},
-            "total_pages": 1,
-        },
-        "language": "BN",
-        "selector": {
-            "item_selector": "item",
-            "title_selector": "title",
-            "link_selector": "link",
-            "pub_date_selector": "pubDate",
-            "paragraph_selector": "description",
-        },
-        "parseParagraph": should_parse_paragraph,
-    },
-    {
-        "name": "The Good Morning",
-        "fetch": fetch_html,
-        "parse": rss_parser,
-        "build_url": lambda page, t: f"https://thegoodmorning.net/feed",
-        "params": {
-            "news_types": {
-                "national": "national"
-            },
-            "total_pages": 1,
-        },
-        "language": "EN",
-        "selector": {
-            "item_selector": "item",
-            "title_selector": "title",
-            "link_selector": "link",
-            "pub_date_selector": "pubDate",
-            "paragraph_selector": "description",
-        },
-        "parseParagraph": should_parse_paragraph,
-    },
-    {
-        "name": "khaborwala",
-        "fetch": fetch_html,
-        "parse": rss_parser,
-        "build_url": lambda page, t: f"https://bn.khaborwala.com/category/{t}/feed/",
-        "params": {
-            "news_types": {
-                "national": "জাতীয়",
-                "international": "আন্তর্জাতিক",
-                "sports": "খেলা",
-
-            },
-            "total_pages": 1,
-        },
-        "language": "BN",
-        "selector": {
-            "item_selector": "item",
-            "title_selector": "title",
-            "link_selector": "link",
-            "pub_date_selector": "pubDate",
-            "paragraph_selector": "description",
-        },
-        "parseParagraph": should_parse_paragraph,
-    },
-    {
-        "name": "Bangla Tribune",
-        "fetch": fetch_html,
-        "parse": rss_parser,
-        "build_url": lambda page, t: f"https://www.banglatribune.com/feed/{t}",
-        "params": {
-            "news_types": {
-                "national": "country",
-                "international": "foreign",
-                "sports": "sport"
-
-            },
-            "total_pages": 1,
-        },
-        "language": "BN",
-        "selector": {
-            "item_selector": "item",
-            "title_selector": "title",
-            "link_selector": "link",
-            "pub_date_selector": "pubDate",
-            "paragraph_selector": "description",
-        },
-        "parseParagraph": should_parse_paragraph,
-    },
+    
 ]
