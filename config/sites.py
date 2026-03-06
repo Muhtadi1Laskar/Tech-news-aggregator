@@ -25,7 +25,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {},
@@ -87,7 +87,7 @@ SITES = [
                 "sports": "sports",
                 "technology": "tech",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -111,7 +111,7 @@ SITES = [
                 "sports": "sports/cricket",
                 "technology": "tech-startup",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -152,7 +152,7 @@ SITES = [
                 "international": "187",
                 "sports": "185",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -174,7 +174,7 @@ SITES = [
                 "international": "world",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {},
@@ -191,7 +191,7 @@ SITES = [
                 "international": "world",
                 "sports": "sport",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {},
@@ -208,7 +208,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
@@ -230,7 +230,7 @@ SITES = [
                 "international": "6",
                 "sports": "8",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {},
@@ -247,7 +247,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
@@ -294,7 +294,7 @@ SITES = [
                 "sports": "sports",
                 "technology": "technology",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {},
@@ -311,7 +311,7 @@ SITES = [
                 "international": "international",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
@@ -334,7 +334,7 @@ SITES = [
                 "international": "international-news",
                 "sports": "sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
@@ -578,7 +578,7 @@ SITES = [
                 "international": "31/world",
                 "sports": "22/sports",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -751,7 +751,7 @@ SITES = [
                 "international": 2,
                 "sports": 3,
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "BN",
         "selector": {
@@ -771,7 +771,7 @@ SITES = [
             "news_types": {
                 "technology": "ai",
             },
-            "total_pages": 1,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -832,7 +832,7 @@ SITES = [
             "news_types": {
                 "international": "international",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {},
@@ -866,7 +866,7 @@ SITES = [
             "news_types": {
                 "international": "international",
             },
-            "total_pages": 3,
+            "total_pages": 2,
         },
         "language": "EN",
         "selector": {
@@ -1042,5 +1042,5 @@ SITES = [
             "paragraph_selector": "description",
         },
         "parseParagraph": should_parse_paragraph,
-    }
+    },
 ]
